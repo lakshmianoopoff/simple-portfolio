@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lakshmi — Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+
+      <div class="nav-logo">lksh<span>.</span>mi</div>
+
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#admin">Admin</a></li>
+      </ul>
+
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
+        <span class="icon" id="themeIcon">☀️</span>
+        <span id="themeLabel">Light</span>
+      </button>
+
+    </div>
+  </nav>
+
+
+
+  <section id="hero" role="banner">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+
+    <div class="container">
+      <div class="hero-layout">
+
+        <!-- Left: Text -->
+        <div class="hero-text">
+          <div class="hero-tag">
+            <span class="dot"></span>
+            Open to opportunities
+          </div>
+
+          <h1 class="hero-name">
+            Lak<span class="accent">shmi</span><br />Anoop
+          </h1>
+
+          <p class="hero-role">Full-Stack Developer &amp; AI Enthusiast</p>
+
+          <p class="hero-desc">
+            Motivated Computer Science student with a strong interest in software development and problem-solving.
+           Skilled in Python, C, and basic web development. Eager to apply technical knowledge
+           to real-world projects and continuously learn new technologies.
+          
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#projects">View Projects ↓</a>
+            <a class="btn btn-outline" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-ring">
+            <div class="hero-photo-inner">
+              <img
+                src="photo.png"
+                alt="Lakshmi Devi"
+                class="hero-photo"
+                onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';"
+              />
+              <div class="photo-placeholder" id="photo-placeholder">
+                <span>📸</span>
+                <small>Save your photo<br/>as photo.png</small>
+              </div>
+            </div>
+          </div>
+          <div class="hero-photo-badge">B.Tech CS 🎓</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+ 
+  <section id="about" role="region" aria-label="About Me">
+    <div class="container">
+      <div class="section-label">// about</div>
+      <h2 class="section-title">Who I Am</h2>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Hey! I'm <strong>Lakshmi</strong>, a B.Tech Computer Science student passionate about
+            building things that actually solve a problem. I enjoy understanding concepts deeply
+            and applying them in practical situations.
+          </p>
+          <p>
+            I've shipped projects including a voice-first AI task assistant and I'm constantly
+            exploring how technology can create real-world impact. I believe great software starts
+            with understanding the problem deeply.
+          </p>
+          <p>
+            When I'm not coding, I'm diving deep into how language models work under the hood
+            or experimenting with new tools and frameworks.I have small interest in designing too.
+          </p>
+        </div>
+
+        <div class="about-facts">
+          <div class="fact-row">
+            <span class="fact-label">Location</span>
+            <span class="fact-value">Thrissur,Kerala, India</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Degree</span>
+            <span class="fact-value">B.Tech CS</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Focus Area</span>
+            <span class="fact-value">Full-Stack + AI</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Status</span>
+            <span class="fact-value">Available 🟢</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="skills" role="region" aria-label="Skills">
+    <div class="container">
+      <div class="section-label">// skills</div>
+      <h2 class="section-title">What I Work With</h2>
+
+      <div class="skills-grid">
+
+        <article class="skill-card">
+          <div class="skill-icon">🐍</div>
+          <div class="skill-name">Python</div>
+          <p class="skill-desc">Backend scripting, ML pipelines, API development, and automation.</p>
+          <div class="skill-tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">Streamlit</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon">⚛️</div>
+          <div class="skill-name">React / Next.js</div>
+          <p class="skill-desc">Component-based UIs, state management, and modern full-stack apps.</p>
+          <div class="skill-tags">
+            <span class="tag">Vite</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Tailwind</span>
+            <span class="tag">Zustand</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon">🤖</div>
+          <div class="skill-name">AI / LLM Integration</div>
+          <p class="skill-desc">Working with APIs, prompts, speech recognition, and intelligent agents.</p>
+          <div class="skill-tags">
+            <span class="tag">Groq</span>
+            <span class="tag">Anthropic</span>
+            <span class="tag">Web Speech API</span>
+            <span class="tag">LLaMA</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon">🗄️</div>
+          <div class="skill-name">Databases</div>
+          <p class="skill-desc">Relational and hosted databases for real-world applications.</p>
+          <div class="skill-tags">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Prisma</span>
+            <span class="tag">SQLite</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon">🔧</div>
+          <div class="skill-name">Dev Tools</div>
+          <p class="skill-desc">Modern tooling for efficient development and deployment.</p>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">VSCode</span>
+            <span class="tag">Vercel</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-name">Web Fundamentals</div>
+          <p class="skill-desc">Strong foundation in core web technologies to build anything from scratch.</p>
+          <div class="skill-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">REST APIs</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" role="region" aria-label="Projects">
+    <div class="container">
+      <div class="section-label">// projects</div>
+      <h2 class="section-title">Things I've Built</h2>
+
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-header">
+            <span class="project-num">01</span>
+            <div class="project-links">
+              <a href="#" class="project-link" title="GitHub">⌥</a>
+              <a href="#" class="project-link" title="Live Demo">↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Voice-First Task Assistant</div>
+            <p class="project-desc">
+              React + FastAPI app with Groq LLM integration. Voice-controlled emails,
+              clipboard summaries, and to-do management — built under a one-hour time constraint.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">React</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Groq API</span>
+              <span class="tag">Gmail SMTP</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-header">
+            <span class="project-num">02</span>
+            <div class="project-links">
+              <a href="#" class="project-link">⌥</a>
+              <a href="#" class="project-link">↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Pylon -Scholarship Hub</div>
+            <p class="project-desc">
+              A student-focused platform to discover and apply for scholarships. Students fill
+              in their profile and get matched with relevant scholarship opportunities.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">LocalStorage</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-header">
+            <span class="project-num">03</span>
+            <div class="project-links">
+              <a href="#" class="project-link">⌥</a>
+              <a href="#" class="project-link">↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Streamlit AI Chatbot</div>
+            <p class="project-desc">
+              Conversational chatbot with streamed responses, full chat history, and
+              Ollama cloud integration — built with a minimal Streamlit UI.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">Streamlit</span>
+              <span class="tag">Ollama</span>
+              <span class="tag">Python</span>
+              <span class="tag">LLaMA</span>
+            </div>
+          </div>
+        </article>
+
+      
+
+        <article class="project-card">
+          <div class="project-header">
+            <span class="project-num">04</span>
+            <div class="project-links">
+              <a href="#" class="project-link">⌥</a>
+              <a href="#" class="project-link">↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">CodeBurry</div>
+            <p class="project-desc">
+             Gamified Learning Platform
+Built an interactive learning platform that turns
+ skill development into a game-like experience, using a growth-based progress system
+ to keep learners motivated and engaged through hands-on challenges.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">TailwindCSS</span>
+            </div>
+          </div>
+        </article>
+
+               <article class="project-card">
+          <div class="project-header">
+            <span class="project-num">05</span>
+            <div class="project-links">
+              <a href="#" class="project-link">⌥</a>
+              <a href="#" class="project-link">↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">SilentGuard </div>
+            <p class="project-desc">
+                AI Failure Detection System
+Designed an intelligent system that monitors
+ behavioral patterns to predict and prevent system failures before they happen,
+  with a focus on anomaly
+ detection and real-time preventive alerts for industrial reliability.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlite</span>
+              <span class="tag">Numpy</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+ 
+
+
+  
+  <section id="experience" role="region" aria-label="Experience">
+    <div class="container">
+      <div class="section-label">//Education</div>
+      <h2 class="section-title">Where I've Been</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="tl-date">2025 — Present</div>
+          <div class="tl-role">BTech CSE</div>
+          <div class="tl-company">College of Engineering · Kerala, India</div>
+          <p class="tl-desc">
+            Participated in hackathons and Expos.Developing web applications and AI integrations as part of B.Tech coursework
+            and independent research. Shipped projects used and presented to real audiences.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-date">2023-2025</div>
+          <div class="tl-role">Junior secondary education, <br> Higher Secondary Education</div>
+          <div class="tl-company">Amrita Vidyalayam Chavakkad · Kerala, India </div>
+          <p class="tl-desc">
+            XII- Computer Maths<br>
+84.3% [CBSE]
+</p>
+        </div>
+
+   
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contact" role="region" aria-label="Contact">
+    <div class="container">
+      <div class="section-label">// contact</div>
+      <h2 class="section-title">Get in Touch</h2>
+
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <p>
+            Have a project in mind, want to collaborate, or just want to say hi?
+            Fill out the form — responses are stored securely in your browser.
+          </p>
+          <div class="contact-detail">
+            <span class="icon">📍</span>
+            <span>Thrissur,Kerala, India</span>
+          </div>
+          <div class="contact-detail">
+            <span class="icon">📧</span>
+            <span>lakshmianup27@gmail.com</span>
+          </div>
+          <div class="contact-detail">
+            <span class="icon">💼</span>
+             <a href="https://linkedin.com/in/lakshmianoop" target="_blank" rel="noopener noreferrer">linkedin.com/in/lakshmianoop</a>
+           
+          </div>
+          <div class="contact-detail">
+            <span class="icon">🐙</span>
+             <a href="https://github.com/lakshmianoopoff" target="_blank" rel="noopener noreferrer">github.com/lakshmianoopoff</a>
+           
+          </div>
+        </div>
+
+        <div class="contact-form-wrap">
+          <div class="form-group">
+            <label for="cf-name">Full Name</label>
+            <input type="text" id="cf-name" placeholder="Type your name" />
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email Address</label>
+            <input type="email" id="cf-email" placeholder="name@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject</label>
+            <select id="cf-subject">
+              <option value="">Select a topic…</option>
+              <option>Project Collaboration</option>
+              <option>Job Opportunity</option>
+              <option>General Enquiry</option>
+              <option>Feedback</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" placeholder="Tell me what's on your mind…"></textarea>
+          </div>
+
+          <button class="btn btn-primary" id="submit-contact"
+                  style="width:100%; justify-content:center;">
+            Send Message →
+          </button>
+
+          <div id="form-status"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="admin" role="region" aria-label="Admin Panel">
+    <div class="container">
+      <div class="section-label">// admin</div>
+      <h2 class="section-title">Admin Panel</h2>
+
+      <!-- LOGIN PANEL — shown by default; CSS hides it when body.admin-authed -->
+      <div id="admin-login-panel">
+        <div class="admin-center">
+          <div class="admin-card">
+            <h3>🔐 Admin Login</h3>
+            <p>Enter credentials to view submitted contact responses.</p>
+
+            <div class="form-group">
+              <label for="admin-user">Username</label>
+              <input type="text" id="admin-user" placeholder="admin" />
+            </div>
+            <div class="form-group">
+              <label for="admin-pass">Password</label>
+              <input type="password" id="admin-pass" placeholder="••••••••" />
+            </div>
+
+            <button class="btn btn-primary" id="admin-login-btn"
+                    style="width:100%; justify-content:center; margin-top:6px;">
+              Login →
+            </button>
+
+            <div id="login-error">⚠ Invalid credentials. Try admin / admin123</div>
+          </div>
+        </div>
+      </div>
+
+    
+      <div id="admin-responses-panel">
+        <div class="admin-header">
+          <div>
+            <div class="section-label">
+              Inbox
+              <span class="response-count-badge" id="response-count">0</span>
+            </div>
+            <p>User messages stored in Chrome LocalStorage as JSON.</p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn-outline btn-sm" id="clear-responses-btn">🗑 Clear All</button>
+            <button class="btn btn-outline btn-sm" id="admin-logout-btn">Logout</button>
+          </div>
+        </div>
+
+        <div class="responses-list" id="responses-list"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <footer role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-left">lksh<span>.</span>mi</div>
+      <div class="footer-right">© 2026 · Built with ♥ in Kerala</div>
+    </div>
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
