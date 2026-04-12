@@ -123,8 +123,8 @@ submitBtn.addEventListener('click', () => {
 
 
 
-const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'admin123';
+const ADMIN_USER = 'portfolio';
+const ADMIN_PASS = 'lacha@123';
 
 const loginBtn   = document.getElementById('admin-login-btn');
 const loginError = document.getElementById('login-error');
