@@ -102,4 +102,5 @@ portfolio/
 This project is personal and not licensed for redistribution.  
 Feel free to use it as a reference or template for your own portfolio.
 
+You can see the site through visiting https://lakshmianoopoff.github.io/simple-portfolio/
 ---
