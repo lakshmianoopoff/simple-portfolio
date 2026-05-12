@@ -927,8 +927,15 @@ select option { background: var(--bg-card); }
 }
 
 
-#admin { background: var(--bg); min-height: 340px; }
+#admin {
+  background: var(--bg);
+  min-height: 340px;
+  display: none;
+}
 
+body.admin-enabled #admin {
+  display: block;
+}
 
 #admin-login-panel     { display: block; }
 #admin-responses-panel { display: none; }

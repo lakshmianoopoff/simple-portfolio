@@ -28,7 +28,6 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Education</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#admin">Admin</a></li>
       </ul>
 
       <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
@@ -227,16 +226,42 @@
     </div>
   </section>
 
-  <section id="projects" role="region" aria-label="Projects">
+   <section id="projects" role="region" aria-label="Projects">
     <div class="container">
       <div class="section-label">// projects</div>
       <h2 class="section-title">Things I've Built</h2>
 
       <div class="projects-grid">
 
-        <article class="project-card">
+  <article class="project-card">
           <div class="project-header">
             <span class="project-num">01</span>
+            <div class="project-links">
+              <a href="#" class="project-link" title="GitHub">⌥</a>
+              <a href="#" class="project-link" title="Live Demo">↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">ResQ – AI-Powered Campus Crisis Command Center</div>
+            <p class="project-desc">
+              AI-powered real-time campus crisis management system with role-based access, 
+              built using React, Vite, Firebase, Node.js, and Gemini 1.5 Flash. Integrated AI-based incident triage, automated report generation, and Firebase real-time services for alerts and synchronization.
+            </p>
+            <div class="skill-tags">
+              <span class="tag">React</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Gemini 1.5 flash</span>
+            </div>
+          </div>
+        </article>
+
+
+ 
+
+        <article class="project-card">
+          <div class="project-header">
+            <span class="project-num">02</span>
             <div class="project-links">
               <a href="#" class="project-link" title="GitHub">⌥</a>
               <a href="#" class="project-link" title="Live Demo">↗</a>
@@ -259,7 +284,7 @@
 
         <article class="project-card">
           <div class="project-header">
-            <span class="project-num">02</span>
+            <span class="project-num">03</span>
             <div class="project-links">
               <a href="#" class="project-link">⌥</a>
               <a href="#" class="project-link">↗</a>
@@ -282,7 +307,7 @@
 
         <article class="project-card">
           <div class="project-header">
-            <span class="project-num">03</span>
+            <span class="project-num">04</span>
             <div class="project-links">
               <a href="#" class="project-link">⌥</a>
               <a href="#" class="project-link">↗</a>
@@ -307,7 +332,7 @@
 
         <article class="project-card">
           <div class="project-header">
-            <span class="project-num">04</span>
+            <span class="project-num">05</span>
             <div class="project-links">
               <a href="#" class="project-link">⌥</a>
               <a href="#" class="project-link">↗</a>
@@ -331,7 +356,7 @@ Built an interactive learning platform that turns
 
                <article class="project-card">
           <div class="project-header">
-            <span class="project-num">05</span>
+            <span class="project-num">06</span>
             <div class="project-links">
               <a href="#" class="project-link">⌥</a>
               <a href="#" class="project-link">↗</a>
@@ -491,6 +516,7 @@ Designed an intelligent system that monitors
                     style="width:100%; justify-content:center; margin-top:6px;">
               Login →
             </button>
+            <div id="login-error" aria-live="polite"></div>
           </div>
         </div>
       </div>

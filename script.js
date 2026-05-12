@@ -125,19 +125,58 @@ submitBtn.addEventListener('click', () => {
 
 const ADMIN_USER = 'portfolio';
 const ADMIN_PASS = 'lacha@123';
-
-const loginBtn   = document.getElementById('admin-login-btn');
+const ADMIN_STORAGE_KEY = 'portfolio_admin_authed';
+const adminSection = document.getElementById('admin');
+const loginBtn = document.getElementById('admin-login-btn');
 const loginError = document.getElementById('login-error');
+
+function isAdminAuthed() {
+  return localStorage.getItem(ADMIN_STORAGE_KEY) === 'true';
+}
+
+function setAdminAuthed(value) {
+  if (value) {
+    localStorage.setItem(ADMIN_STORAGE_KEY, 'true');
+  } else {
+    localStorage.removeItem(ADMIN_STORAGE_KEY);
+  }
+}
+
+function showAdminArea() {
+  document.body.classList.add('admin-enabled');
+  if (isAdminAuthed()) {
+    document.body.classList.add('admin-authed');
+    renderResponses();
+  } else {
+    document.body.classList.remove('admin-authed');
+  }
+}
+
+function hideAdminArea() {
+  document.body.classList.remove('admin-enabled', 'admin-authed');
+}
+
+function updateAdminVisibility() {
+  if (isAdminAuthed() || new URLSearchParams(window.location.search).get('admin') === '1') {
+    showAdminArea();
+  } else {
+    hideAdminArea();
+  }
+}
+
+updateAdminVisibility();
 
 loginBtn.addEventListener('click', () => {
   const user = document.getElementById('admin-user').value.trim();
   const pass = document.getElementById('admin-pass').value;
 
   if (user === ADMIN_USER && pass === ADMIN_PASS) {
+    loginError.textContent = '';
     loginError.classList.remove('visible');
-    document.body.classList.add('admin-authed');  // CSS swaps panels
-    renderResponses();
+    setAdminAuthed(true);
+    showAdminArea();
   } else {
+    loginError.textContent = 'Incorrect username or password.';
     loginError.classList.add('visible');
   }
 });
@@ -148,11 +187,18 @@ document.getElementById('admin-pass').addEventListener('keydown', (e) => {
 });
 
 
+document.addEventListener('keydown', (e) => {
+  if (e.altKey && e.key.toLowerCase() === 'a') {
+    showAdminArea();
+  }
+});
+
 
 document.getElementById('admin-logout-btn').addEventListener('click', () => {
-  document.body.classList.remove('admin-authed');
+  setAdminAuthed(false);
   document.getElementById('admin-user').value = '';
   document.getElementById('admin-pass').value = '';
+  hideAdminArea();
 });
 
 
