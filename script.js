@@ -26,12 +26,22 @@ themeBtn.addEventListener('click', () => {
 
 
 const progressBar = document.getElementById('scroll-progress');
+const navbar = document.getElementById('navbar');
 
-document.addEventListener('scroll', () => {
+function handleScroll() {
   const scrolled = window.scrollY;
   const total    = document.documentElement.scrollHeight - window.innerHeight;
   progressBar.style.width = ((scrolled / total) * 100) + '%';
-});
+  
+  if (scrolled > 20) {
+    navbar.classList.add('nav-scrolled');
+  } else {
+    navbar.classList.remove('nav-scrolled');
+  }
+}
+
+document.addEventListener('scroll', handleScroll);
+window.addEventListener('load', handleScroll);
 
 
 
@@ -266,3 +276,182 @@ window.addEventListener('storage', (e) => {
     renderResponses();
   }
 });
+
+
+// Scroll Reveal Observer for About Me & other animated items
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+    }
+  });
+}, {
+  rootMargin: '0px 0px -8% 0px',
+  threshold: 0.08
+});
+
+document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// --- NEW ANIMATIONS FOR ABOUT ME SECTION ---
+
+// 1. Text Splitting Reveal Utility
+function splitTextIntoSpans(element) {
+  if (!element || element.dataset.split === 'true') return;
+  element.dataset.split = 'true';
+
+  let newHTML = '';
+  element.childNodes.forEach(node => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const words = node.textContent.split(/(\s+)/);
+      words.forEach(word => {
+        if (word.trim() === '') {
+          newHTML += word;
+        } else {
+          newHTML += `<span class="anim-word-wrapper"><span class="anim-word">${word}</span></span>`;
+        }
+      });
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const inlineTags = ['STRONG', 'EM', 'A', 'SPAN'];
+      if (inlineTags.includes(node.tagName) || node.classList.contains('serif-text')) {
+        const words = node.textContent.split(/(\s+)/);
+        let innerHTML = '';
+        words.forEach(word => {
+          if (word.trim() === '') {
+            innerHTML += word;
+          } else {
+            innerHTML += `<span class="anim-word-wrapper"><span class="anim-word">${word}</span></span>`;
+          }
+        });
+        const clone = node.cloneNode(false);
+        clone.innerHTML = innerHTML;
+        newHTML += clone.outerHTML;
+      } else {
+        newHTML += node.outerHTML;
+      }
+    }
+  });
+  element.innerHTML = newHTML;
+
+  // Resolve base delay from parent transition-delay
+  let baseDelay = 0.05;
+  const parentDelayAttr = element.style.transitionDelay || window.getComputedStyle(element).transitionDelay;
+  if (parentDelayAttr) {
+    const parsed = parseFloat(parentDelayAttr);
+    if (!isNaN(parsed)) {
+      baseDelay = parsed;
+    }
+  }
+
+  // Apply staggered delays starting from baseDelay
+  let delay = baseDelay;
+  const words = element.querySelectorAll('.anim-word');
+  words.forEach(word => {
+    word.style.transitionDelay = `${delay}s`;
+    delay += 0.03; // 30ms stagger
+  });
+}
+
+// Initialize text splitting for elements marked for text animations
+document.querySelectorAll('.reveal-text-anim').forEach(el => {
+  splitTextIntoSpans(el);
+});
+
+// 2. 3D Tilt and Glare Effect for Photo Card
+const card = document.querySelector('.about-image-card');
+const wrapper = document.querySelector('.about-card-wrapper');
+
+if (card && wrapper) {
+  wrapper.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; // X position inside card
+    const y = e.clientY - rect.top;  // Y position inside card
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Calculate rotation angles (max tilt is 12 degrees)
+    const tiltX = ((centerY - y) / centerY) * 12;
+    const tiltY = ((x - centerX) / centerX) * 12;
+
+    // Update style with perspective rotation
+    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.04, 1.04, 1.04)`;
+    card.style.transition = 'transform 0.1s cubic-bezier(0.25, 1, 0.5, 1)';
+
+    // Update custom properties for the CSS glare layer
+    const glareX = (x / rect.width) * 100;
+    const glareY = (y / rect.height) * 100;
+    card.style.setProperty('--mouse-x', `${glareX}%`);
+    card.style.setProperty('--mouse-y', `${glareY}%`);
+
+    // Pause the CSS gentle float animation during tilt
+    wrapper.style.animationPlayState = 'paused';
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    // Reset transform smoothly
+    card.style.transform = '';
+    card.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s';
+    
+    // Resume floating
+    wrapper.style.animationPlayState = 'running';
+  });
+}
+
+// 3. Horizontal Scroll for Projects section
+function initProjectsScroll() {
+  const container = document.querySelector('.horizontal-scroll-container');
+  const track = document.getElementById('projects-track');
+  
+  if (!container || !track) return;
+  
+  function updateScroll() {
+    if (window.innerWidth <= 768) {
+      track.style.transform = '';
+      return;
+    }
+    
+    const containerRect = container.getBoundingClientRect();
+    const containerHeight = container.scrollHeight;
+    const totalScrollable = containerHeight - window.innerHeight;
+    
+    let progress = -containerRect.top / totalScrollable;
+    progress = Math.max(0, Math.min(1, progress));
+    
+    const maxTranslate = track.scrollWidth - window.innerWidth;
+    if (maxTranslate > 0) {
+      track.style.transform = `translateX(${-progress * maxTranslate}px)`;
+    }
+  }
+  
+  function calculateHeight() {
+    if (window.innerWidth > 768) {
+      const trackWidth = track.scrollWidth;
+      const verticalScrollLength = (trackWidth - window.innerWidth) + window.innerHeight + 150;
+      container.style.height = `${verticalScrollLength}px`;
+    } else {
+      container.style.height = '';
+    }
+  }
+  
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    calculateHeight();
+    updateScroll();
+  });
+  
+  // Initialize after everything is loaded
+  window.addEventListener('load', () => {
+    calculateHeight();
+    updateScroll();
+  });
+  
+  // Run initially
+  setTimeout(() => {
+    calculateHeight();
+    updateScroll();
+  }, 100);
+}
+
+initProjectsScroll();
