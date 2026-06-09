@@ -397,4 +397,195 @@ if (card && wrapper) {
     // Resume floating
     wrapper.style.animationPlayState = 'running';
   });
-}
+}
+
+// ==========================================
+// SKILLS ORGANIC ENTRANCE & CONNECTORS
+// ==========================================
+
+let skillsTimeouts = [];
+
+function clearSkillsAnimation() {
+  // Clear any active timeouts
+  skillsTimeouts.forEach(t => clearTimeout(t));
+  skillsTimeouts = [];
+
+  // Reset classes on all cards
+  const cards = document.querySelectorAll('.skill-card');
+  cards.forEach(card => {
+    card.classList.remove('card-visible', 'content-visible');
+  });
+
+  // Clear SVG paths and endpoints
+  const container = document.querySelector('.skills-svg-container');
+  if (container) container.innerHTML = '';
+}
+
+function drawLine(idxA, idxB, instant = false) {
+  const container = document.querySelector('.skills-svg-container');
+  if (!container) return;
+
+  const cards = document.querySelectorAll('.skill-card');
+  const cardA = cards[idxA];
+  const cardB = cards[idxB];
+  if (!cardA || !cardB) return;
+
+  const containerRect = container.getBoundingClientRect();
+  const rectA = cardA.getBoundingClientRect();
+  const rectB = cardB.getBoundingClientRect();
+
+  // If cards are stacked vertically on mobile, skip drawing connector curves
+  const isHorizontal = rectB.left > rectA.right - 50;
+  if (!isHorizontal) return;
+
+  const paddingX = 22; // Inset from card edges
+  const paddingY = 22; // Inset from card top
+
+  const startX = rectA.right - containerRect.left - paddingX;
+  const startY = rectA.top - containerRect.top + paddingY;
+  const endX = rectB.left - containerRect.left + paddingX;
+  const endY = rectB.top - containerRect.top + paddingY;
+
+  const dx = endX - startX;
+  const arcHeight = 45;
+
+  const cp1x = startX + dx * 0.25;
+  const cp1y = Math.min(startY, endY) - arcHeight;
+  const cp2x = startX + dx * 0.75;
+  const cp2y = Math.min(startY, endY) - arcHeight;
+
+  // Path
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const d = `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+  path.setAttribute('d', d);
+  path.setAttribute('class', 'skill-connector-path');
+
+  // Start Dot
+  const circleStart = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circleStart.setAttribute('cx', startX);
+  circleStart.setAttribute('cy', startY);
+  circleStart.setAttribute('r', '3.5');
+  circleStart.setAttribute('class', 'skill-connector-dot dot-start');
+
+  // End Dot
+  const circleEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circleEnd.setAttribute('cx', endX);
+  circleEnd.setAttribute('cy', endY);
+  circleEnd.setAttribute('r', '3.5');
+  circleEnd.setAttribute('class', 'skill-connector-dot dot-end');
+
+  if (instant) {
+    path.style.strokeDashoffset = '0';
+    path.style.animation = 'none';
+    circleStart.classList.remove('dot-start');
+    circleStart.style.opacity = '1';
+    circleEnd.classList.remove('dot-end');
+    circleEnd.style.opacity = '1';
+  }
+
+  container.appendChild(path);
+  container.appendChild(circleStart);
+  container.appendChild(circleEnd);
+}
+
+function runSkillsAnimation() {
+  clearSkillsAnimation();
+
+  const cards = document.querySelectorAll('.skill-card');
+  if (cards.length < 6) return;
+
+  const animateCardSequence = (cardIndex, startTime) => {
+    // 1. Reveal card shape
+    skillsTimeouts.push(setTimeout(() => {
+      cards[cardIndex].classList.add('card-visible');
+    }, startTime));
+
+    // 2. Reveal text components sequentially (staggered delay is handled inside CSS based on content-visible class)
+    skillsTimeouts.push(setTimeout(() => {
+      cards[cardIndex].classList.add('content-visible');
+    }, startTime + 150));
+  };
+
+  // Card 1
+  animateCardSequence(0, 0);
+
+  // Line 01->02
+  skillsTimeouts.push(setTimeout(() => {
+    drawLine(0, 1);
+  }, 750));
+
+  // Card 2
+  animateCardSequence(1, 1250);
+
+  // Line 02->03
+  skillsTimeouts.push(setTimeout(() => {
+    drawLine(1, 2);
+  }, 2000));
+
+  // Card 3
+  animateCardSequence(2, 2500);
+
+  // Card 4 starts right after Card 3 (no line between 3 and 4)
+  animateCardSequence(3, 3100);
+
+  // Line 04->05
+  skillsTimeouts.push(setTimeout(() => {
+    drawLine(3, 4);
+  }, 3850));
+
+  // Card 5
+  animateCardSequence(4, 4350);
+
+  // Line 05->06
+  skillsTimeouts.push(setTimeout(() => {
+    drawLine(4, 5);
+  }, 5100));
+
+  // Card 6
+  animateCardSequence(5, 5600);
+}
+
+function initSkillsConnectors() {
+  const skillsSection = document.getElementById('skills');
+  if (!skillsSection) return;
+
+  // Custom IntersectionObserver to replay animation sequence when scrolling back in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        skillsSection.classList.add('revealed');
+        runSkillsAnimation();
+      } else {
+        skillsSection.classList.remove('revealed');
+        clearSkillsAnimation();
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -10% 0px',
+    threshold: 0.1
+  });
+
+  observer.observe(skillsSection);
+
+  // Debounced window resize handler to redraw paths instantly on orientation change
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (skillsSection.classList.contains('revealed')) {
+        const container = document.querySelector('.skills-svg-container');
+        if (container) {
+          container.innerHTML = '';
+          const pairs = [[0, 1], [1, 2], [3, 4], [4, 5]];
+          pairs.forEach(([from, to]) => {
+            drawLine(from, to, true);
+          });
+        }
+      }
+    }, 150);
+  });
+}
+
+// Initialize organic skills connectors immediately
+initSkillsConnectors();
+

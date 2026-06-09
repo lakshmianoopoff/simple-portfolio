@@ -1077,50 +1077,190 @@ nav#navbar.nav-scrolled {
 
 #skills {
   background: var(--bg-card);
+  overflow: hidden;
+  transition: background var(--transition);
+}
+
+.skills-grid-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.skills-svg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 50px;
+  row-gap: 90px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 1023px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+    row-gap: 70px;
+  }
+}
+
+@media (max-width: 640px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
 
 .skill-card {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 26px;
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  border-radius: 24px;
+  padding: 32px 28px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  
+  /* Initial hidden state for entrance animation */
+  opacity: 0;
+  transform: translateY(24px) rotate(var(--rotation, 0deg));
+  
+  transition: opacity 0.5s ease-out, 
+              transform 0.5s ease-out, 
+              border-color 0.4s, 
+              box-shadow 0.4s,
+              background-color var(--transition);
 }
 
-.skill-card:hover {
+/* Define organic layout variables for staggered manual offsets and rotation angles on large screens */
+@media (min-width: 1024px) {
+  .skill-card:nth-child(1) { --offsetX: -12px; --offsetY: 30px; --rotation: -1.5deg; }
+  .skill-card:nth-child(2) { --offsetX: 15px; --offsetY: -40px; --rotation: 1.8deg; }
+  .skill-card:nth-child(3) { --offsetX: -18px; --offsetY: 20px; --rotation: -1deg; }
+  .skill-card:nth-child(4) { --offsetX: 20px; --offsetY: -20px; --rotation: 1.2deg; }
+  .skill-card:nth-child(5) { --offsetX: -10px; --offsetY: 50px; --rotation: -2deg; }
+  .skill-card:nth-child(6) { --offsetX: 12px; --offsetY: -10px; --rotation: 0.8deg; }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .skill-card:nth-child(1) { --offsetX: -8px; --offsetY: 20px; --rotation: -1deg; }
+  .skill-card:nth-child(2) { --offsetX: 8px; --offsetY: -25px; --rotation: 1deg; }
+  .skill-card:nth-child(3) { --offsetX: -12px; --offsetY: 15px; --rotation: -0.8deg; }
+  .skill-card:nth-child(4) { --offsetX: 12px; --offsetY: -15px; --rotation: 0.8deg; }
+  .skill-card:nth-child(5) { --offsetX: -8px; --offsetY: 30px; --rotation: -1.5deg; }
+  .skill-card:nth-child(6) { --offsetX: 8px; --offsetY: -10px; --rotation: 0.5deg; }
+}
+
+@media (max-width: 767px) {
+  .skill-card {
+    --offsetX: 0px;
+    --offsetY: 0px;
+    --rotation: 0deg;
+  }
+}
+
+/* Active visible state triggered by JS IntersectionObserver sequence */
+.skill-card.card-visible {
+  opacity: 1;
+  transform: translate(var(--offsetX, 0), var(--offsetY, 0)) rotate(var(--rotation, 0deg));
+}
+
+.skill-card.card-visible:hover {
+  transform: scale(1.04) rotate(0deg) translate(0) !important;
   border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
+  box-shadow: inset 0 0 12px var(--border-green), 0 12px 36px var(--border-green);
+  background: var(--bg-card);
+}
+
+/* Sequential internal text elements reveal setup */
+.skill-card .skill-number,
+.skill-card .skill-icon,
+.skill-card .skill-name,
+.skill-card .skill-desc,
+.skill-card .skill-tags {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skill-card.content-visible .skill-number {
+  opacity: 0.9;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.skill-card.content-visible .skill-icon {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.08s;
+}
+
+.skill-card.content-visible .skill-name {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.16s;
+}
+
+.skill-card.content-visible .skill-desc {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.24s;
+}
+
+.skill-card.content-visible .skill-tags {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.32s;
+}
+
+.skill-number {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text);
+  opacity: 0.9;
+  line-height: 1;
+  margin-bottom: 24px;
 }
 
 .skill-icon {
-  font-size: 26px;
-  margin-bottom: 14px;
+  font-size: 32px;
+  margin-bottom: 8px;
 }
 
 .skill-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.05rem;
-  margin-bottom: 8px;
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 12px;
+  transition: color var(--transition);
 }
 
 .skill-desc {
   color: var(--text-muted);
-  font-size: 12.5px;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  transition: color var(--transition);
 }
 
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 14px;
+  margin-top: auto;
 }
 
 .tag {
@@ -1131,6 +1271,48 @@ nav#navbar.nav-scrolled {
   padding: 3px 10px;
   border-radius: 20px;
   letter-spacing: 0.05em;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+/* Connector Lines SVG styles */
+.skill-connector-path {
+  stroke: var(--accent);
+  stroke-width: 1.75px;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke 0.3s ease;
+  animation: draw-path-single 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+
+.skill-connector-dot {
+  fill: var(--bg);
+  stroke: var(--accent);
+  stroke-width: 2px;
+  opacity: 0;
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.skill-connector-dot.dot-start {
+  animation: fade-in-dot-single 0.2s ease-out forwards;
+}
+
+.skill-connector-dot.dot-end {
+  animation: fade-in-dot-single 0.2s ease-out forwards;
+  animation-delay: 1s; /* Fades in when line drawing is complete */
+}
+
+@keyframes draw-path-single {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in-dot-single {
+  to {
+    opacity: 1;
+  }
 }
 
 
