@@ -588,4 +588,183 @@ function initSkillsConnectors() {
 
 // Initialize organic skills connectors immediately
 initSkillsConnectors();
-
+
+
+// ==========================================
+// SCROLL-DRIVEN TIMELINE STACKING REVEAL
+// ==========================================
+
+function initTimelineScroll() {
+  const timeline = document.querySelector('.timeline');
+  if (!timeline) return;
+
+  const items = timeline.querySelectorAll('.timeline-item');
+  if (items.length === 0) return;
+
+  function updateTimeline() {
+    const windowHeight = window.innerHeight;
+    
+    // 1. Activate/deactivate items based on their position in viewport
+    let lastActiveIndex = -1;
+    items.forEach((item, idx) => {
+      const rect = item.getBoundingClientRect();
+      // Activate if the item's top has scrolled past 75% of the viewport height
+      if (rect.top < windowHeight * 0.75) {
+        item.classList.add('item-active');
+        lastActiveIndex = idx;
+      } else {
+        item.classList.remove('item-active');
+      }
+    });
+
+    // 2. Draw line to match active items
+    if (lastActiveIndex === -1) {
+      timeline.style.setProperty('--line-progress', '0%');
+    } else if (lastActiveIndex === items.length - 1) {
+      timeline.style.setProperty('--line-progress', '100%');
+    } else {
+      // Calculate how far the active items reach down the timeline
+      const firstRect = items[0].getBoundingClientRect();
+      const lastActiveRect = items[lastActiveIndex].getBoundingClientRect();
+      
+      const totalDistance = items[items.length - 1].getBoundingClientRect().top - firstRect.top;
+      const currentDistance = lastActiveRect.top - firstRect.top;
+      
+      let percentage = 0;
+      if (totalDistance > 0) {
+        percentage = (currentDistance / totalDistance) * 100;
+      }
+      
+      // Calculate vertical offset relative to timeline container to draw exactly to the dot
+      timeline.style.setProperty('--line-progress', `calc(${percentage}% + 12px)`);
+    }
+  }
+
+  // Use passive event listener for better performance
+  window.addEventListener('scroll', updateTimeline, { passive: true });
+  window.addEventListener('resize', updateTimeline, { passive: true });
+  
+  // Initial run
+  updateTimeline();
+}
+
+// Initialize timeline scrolling animations
+initTimelineScroll();
+
+
+// ==========================================
+// CERTIFICATES GALLERY ARCHIVE
+// ==========================================
+
+function initCertificatesGallery() {
+  const certSection = document.getElementById('certificates');
+  if (!certSection) return;
+
+  const filterButtons = certSection.querySelectorAll('.filter-btn');
+  const gridItems = certSection.querySelectorAll('.cert-grid-item');
+  const cards = certSection.querySelectorAll('.cert-card');
+
+  const lightbox = document.getElementById('cert-lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  
+  const detailsPanel = document.getElementById('cert-details-panel');
+  if (!lightbox || !detailsPanel) return;
+
+  const panelCloseBtn = detailsPanel.querySelector('.panel-close-btn');
+  const panelCertImg = document.getElementById('panel-cert-img');
+  const panelCategory = document.getElementById('panel-category');
+  const panelTitle = document.getElementById('panel-title');
+  const panelIssuer = document.getElementById('panel-issuer');
+  const panelYear = document.getElementById('panel-year');
+  const panelDescription = document.getElementById('panel-description');
+
+  // Filter functionality
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter');
+
+      // Fade out grid items
+      gridItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(10px)';
+      });
+
+      // Wait for fade-out, then filter and fade-in
+      setTimeout(() => {
+        gridItems.forEach(item => {
+          const card = item.querySelector('.cert-card');
+          const category = card.getAttribute('data-category');
+          
+          if (filterValue === 'all' || category === filterValue) {
+            item.style.display = 'block';
+            // Force layout recalculation
+            void item.offsetWidth;
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }, 250);
+    });
+  });
+
+  // Open Lightbox + Details Panel
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const title = card.getAttribute('data-title');
+      const category = card.getAttribute('data-category');
+      const issuer = card.getAttribute('data-issuer') || 'N/A';
+      const year = card.getAttribute('data-year');
+      const description = card.getAttribute('data-description');
+      const img = card.querySelector('.cert-thumb img');
+      const imgSrc = img ? img.src : '';
+
+      // Populate details
+      if (panelCertImg) panelCertImg.src = imgSrc;
+      if (panelCategory) panelCategory.textContent = category;
+      if (panelTitle) panelTitle.textContent = title;
+      if (panelIssuer) panelIssuer.textContent = issuer;
+      if (panelYear) panelYear.textContent = year;
+      if (panelDescription) panelDescription.textContent = description;
+
+      // Populate lightbox
+      if (lightboxImg) lightboxImg.src = imgSrc;
+
+      // Activate both
+      lightbox.classList.add('active');
+      detailsPanel.classList.add('active');
+    });
+  });
+
+  // Close functionality
+  const closeAll = () => {
+    lightbox.classList.remove('active');
+    detailsPanel.classList.remove('active');
+  };
+
+  // Close on lightbox click
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.closest('.lightbox-content') === null) {
+      closeAll();
+    }
+  });
+
+  // Close on details panel close btn click
+  if (panelCloseBtn) {
+    panelCloseBtn.addEventListener('click', closeAll);
+  }
+
+  // Close on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAll();
+    }
+  });
+}
+
+// Initialize gallery
+initCertificatesGallery();
