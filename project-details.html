@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details — Lakshmi Anoop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=8" />
+  <style>
+    /* Additional styles for multiple images */
+    .pd-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .pd-gallery-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+  </style>
+</head>
+
+<body class="project-details-page">
+
+
+
+  <main role="main">
+    <section class="pd-hero">
+      <div class="container">
+        <a href="index.html#projects" class="pd-back-btn">← Back to Projects</a>
+        
+        <div class="pd-header">
+          <div class="pd-tags" id="pd-tags"></div>
+          <h1 class="pd-title" id="pd-title">Project Title</h1>
+          <p class="pd-subtitle" id="pd-subtitle">Project short description goes here.</p>
+        </div>
+
+        <div class="pd-image-wrapper">
+          <img id="pd-image" src="" alt="Project Image" class="pd-main-image" onerror="this.style.display='none'">
+          <div id="pd-image-fallback" class="img-fallback pd-main-fallback" style="display:none;">?</div>
+        </div>
+
+        <div class="pd-content">
+          <div class="pd-main-text">
+            <h2>Overview</h2>
+            <p id="pd-desc">Detailed information will appear here.</p>
+            
+            <div id="pd-gallery-container" style="display: none;">
+              <h3 style="margin-top: 40px; font-family: var(--font-display); color: var(--text);">Project Gallery</h3>
+              <div class="pd-gallery" id="pd-gallery"></div>
+            </div>
+          </div>
+          <div class="pd-sidebar">
+            <div class="pd-links">
+              <h3>Links</h3>
+              <a href="#" id="pd-live" class="cta-btn" target="_blank" rel="noopener noreferrer">
+                <span>View Live Site</span>
+                <span>↗</span>
+              </a>
+              <a href="#" id="pd-github" class="cta-btn btn-outline" target="_blank" rel="noopener noreferrer">
+                <span>GitHub Repo</span>
+                <span>⌥</span>
+              </a>
+            </div>
+            <div class="pd-tech">
+              <h3>Technologies</h3>
+              <div class="pd-tech-list" id="pd-tech-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <script>
+    // Theme Management
+    const html = document.documentElement;
+
+    function applyTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('portfolio-theme', theme);
+    }
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    applyTheme(savedTheme);
+
+    // Project Data
+    const projects = {
+      'resq': {
+        title: 'ResQ – AI-Powered Campus Crisis Command Center',
+        subtitle: 'AI-powered real-time campus crisis management system with role-based access.',
+        desc: 'Built using React, Vite, Firebase, Node.js, and Gemini 1.5 Flash. It integrates AI-based incident triage, automated report generation, and Firebase real-time services for instant alerts and synchronization across campus authorities.',
+        image: 'image-project/resq.jpeg',
+        gallery: [], // Add additional image paths here like 'image-project/resq-1.jpg'
+        fallback: 'R',
+        tags: ['React', 'Firebase', 'Node.js', 'Gemini 1.5 flash'],
+        live: '#',
+        github: '#'
+      },
+      'voice': {
+        title: 'Voice-First Task Assistant',
+        subtitle: 'React + FastAPI app with Groq LLM integration.',
+        desc: 'A powerful voice-controlled assistant built under a one-hour time constraint. Features voice-controlled emails, clipboard summaries, and to-do management using the fast Groq API.',
+        image: 'image-project/voice-ivory.jpeg',
+        gallery: [],
+        fallback: 'V',
+        tags: ['React', 'FastAPI', 'Groq API', 'Gmail SMTP'],
+        live: '#',
+        github: '#'
+      },
+      'pylon': {
+        title: 'Pylon - Scholarship Hub',
+        subtitle: 'A student-focused platform to discover and apply for scholarships.',
+        desc: 'Students can fill in their comprehensive profile and get intelligently matched with relevant scholarship opportunities, streamlining the financial aid discovery process.',
+        image: 'image-project/pylon.jpeg',
+        gallery: [],
+        fallback: 'P',
+        tags: ['HTML', 'CSS', 'JavaScript', 'LocalStorage'],
+        live: '#',
+        github: '#'
+      },
+      'codeburry': {
+        title: 'CodeBurry',
+        subtitle: 'Gamified Learning Platform',
+        desc: 'Built an interactive learning platform that turns skill development into a game-like experience. It uses a growth-based progress system to keep learners continually motivated and engaged through hands-on practical challenges.',
+        image: 'image-project/code-burry.jpeg',
+        gallery: [],
+        fallback: 'C',
+        tags: ['React', 'TypeScript', 'TailwindCSS'],
+        live: '#',
+        github: '#'
+      },
+      'silentguard': {
+        title: 'SilentGuard',
+        subtitle: 'AI Failure Detection System',
+        desc: 'Designed an intelligent system that meticulously monitors behavioral patterns to predict and prevent system failures before they happen. Focused on anomaly detection and real-time preventive alerts to ensure industrial reliability.',
+        image: 'image-project/Silent-quard.png',
+        gallery: [],
+        fallback: 'S',
+        tags: ['Python', 'Streamlite', 'Numpy'],
+        live: '#',
+        github: '#'
+      }
+    };
+
+    // Load Data
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const project = projects[id];
+
+    if (project) {
+      document.getElementById('pd-title').textContent = project.title;
+      document.getElementById('pd-subtitle').textContent = project.subtitle;
+      document.getElementById('pd-desc').textContent = project.desc;
+      
+      const img = document.getElementById('pd-image');
+      img.src = project.image;
+      img.onerror = () => {
+        img.style.display = 'none';
+        const fallback = document.getElementById('pd-image-fallback');
+        fallback.textContent = project.fallback;
+        fallback.style.display = 'flex';
+      };
+
+      // Handle Gallery Images
+      if (project.gallery && project.gallery.length > 0) {
+        document.getElementById('pd-gallery-container').style.display = 'block';
+        const galleryWrap = document.getElementById('pd-gallery');
+        project.gallery.forEach(imgSrc => {
+          const imgEl = document.createElement('img');
+          imgEl.src = imgSrc;
+          imgEl.className = 'pd-gallery-img';
+          imgEl.alt = project.title + ' screenshot';
+          galleryWrap.appendChild(imgEl);
+        });
+      }
+
+      document.getElementById('pd-live').href = project.live;
+      document.getElementById('pd-github').href = project.github;
+
+      const tagsContainer = document.getElementById('pd-tags');
+      const techContainer = document.getElementById('pd-tech-list');
+      
+      project.tags.forEach(tag => {
+        // Hero Tags
+        const tagSpan = document.createElement('span');
+        tagSpan.className = 'pd-tag';
+        tagSpan.textContent = tag;
+        tagsContainer.appendChild(tagSpan);
+
+        // Sidebar Tech List
+        const techSpan = document.createElement('span');
+        techSpan.className = 'pd-tech-item';
+        techSpan.textContent = tag;
+        techContainer.appendChild(techSpan);
+      });
+    } else {
+      document.getElementById('pd-title').textContent = 'Project Not Found';
+      document.getElementById('pd-subtitle').textContent = 'Please return to the portfolio.';
+    }
+  </script>
+</body>
+</html>

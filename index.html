@@ -216,7 +216,8 @@
         <!-- Group 1 -->
         <div class="projects-marquee-group">
           <!-- Card 1 -->
-          <article class="project-marquee-card">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=resq'" style="cursor: pointer;">
+
             <div class="project-card-thumb">
               <img src="image-project/resq.jpeg" alt="ResQ" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>R</div>'" />
             </div>
@@ -231,23 +232,31 @@
               <span class="project-card-tag">Gemini 1.5 flash</span>
             </div>
             
-            <div class="project-card-overlay">
-              <div class="overlay-image" style="background: linear-gradient(135deg, rgba(255, 159, 67, 0.3), rgba(255, 107, 107, 0.3));">
-                <span class="overlay-icon">🚨</span>
-              </div>
-              <h4 class="overlay-title">ResQ – AI-Powered Campus Crisis Center</h4>
-              <p class="overlay-desc">
-                AI-powered real-time campus crisis management system with role-based access, built using React, Vite, Firebase, Node.js, and Gemini 1.5 Flash. Integrated AI-based incident triage, automated report generation, and Firebase real-time services for alerts and synchronization.
-              </p>
-              <div class="overlay-links">
-                <a href="#" class="overlay-btn overlay-btn-github" target="_blank" rel="noopener noreferrer">GitHub ⌥</a>
-                <a href="#" class="overlay-btn overlay-btn-live" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
-              </div>
+            </article>
+
+          
+          <!-- Card 2 -->
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=voice'" style="cursor: pointer;">
+
+            <div class="project-card-thumb">
+              <img src="image-project/voice-ivory.jpeg" alt="Voice-First Task Assistant" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>V</div>'" />
             </div>
-          </article>
+            <h3 class="project-card-title">Voice-First Task Assistant</h3>
+            <p class="project-card-desc">
+              React + FastAPI app with Groq LLM integration. Voice-controlled emails, clipboard summaries, and to-do management — built under a one-hour time constraint.
+            </p>
+            <div class="project-card-tags">
+              <span class="project-card-tag">React</span>
+              <span class="project-card-tag">FastAPI</span>
+              <span class="project-card-tag">Groq API</span>
+              <span class="project-card-tag">Gmail SMTP</span>
+            </div>
+            
+            </article>
 
           <!-- Card 3 -->
-          <article class="project-marquee-card">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=pylon'" style="cursor: pointer;">
+
             <div class="project-card-thumb">
               <img src="image-project/pylon.jpeg" alt="Pylon" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>P</div>'" />
             </div>
@@ -262,23 +271,11 @@
               <span class="project-card-tag">LocalStorage</span>
             </div>
             
-            <div class="project-card-overlay">
-              <div class="overlay-image" style="background: linear-gradient(135deg, rgba(255, 159, 67, 0.3), rgba(255, 107, 107, 0.3));">
-                <span class="overlay-icon">🎓</span>
-              </div>
-              <h4 class="overlay-title">Pylon -Scholarship Hub</h4>
-              <p class="overlay-desc">
-                A student-focused platform to discover and apply for scholarships. Students fill in their profile and get matched with relevant scholarship opportunities.
-              </p>
-              <div class="overlay-links">
-                <a href="#" class="overlay-btn overlay-btn-github" target="_blank" rel="noopener noreferrer">GitHub ⌥</a>
-                <a href="#" class="overlay-btn overlay-btn-live" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
-              </div>
-            </div>
-          </article>
+            </article>
 
           <!-- Card 5 -->
-          <article class="project-marquee-card">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=codeburry'" style="cursor: pointer;">
+
             <div class="project-card-thumb">
               <img src="image-project/code-burry.jpeg" alt="CodeBurry" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>C</div>'" />
             </div>
@@ -292,23 +289,11 @@
               <span class="project-card-tag">TailwindCSS</span>
             </div>
             
-            <div class="project-card-overlay">
-              <div class="overlay-image" style="background: linear-gradient(135deg, rgba(255, 159, 67, 0.3), rgba(255, 107, 107, 0.3));">
-                <span class="overlay-icon">🎮</span>
-              </div>
-              <h4 class="overlay-title">CodeBurry</h4>
-              <p class="overlay-desc">
-                Gamified Learning Platform Built an interactive learning platform that turns skill development into a game-like experience, using a growth-based progress system to keep learners motivated and engaged through hands-on challenges.
-              </p>
-              <div class="overlay-links">
-                <a href="#" class="overlay-btn overlay-btn-github" target="_blank" rel="noopener noreferrer">GitHub ⌥</a>
-                <a href="#" class="overlay-btn overlay-btn-live" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
-              </div>
-            </div>
-          </article>
+            </article>
 
           <!-- Card 6 -->
-          <article class="project-marquee-card">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=silentguard'" style="cursor: pointer;">
+
             <div class="project-card-thumb">
               <img src="image-project/Silent-quard.png" alt="SilentGuard" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>S</div>'" />
             </div>
@@ -322,20 +307,104 @@
               <span class="project-card-tag">Numpy</span>
             </div>
             
-            <div class="project-card-overlay">
-              <div class="overlay-image" style="background: linear-gradient(135deg, rgba(255, 159, 67, 0.3), rgba(255, 107, 107, 0.3));">
-                <span class="overlay-icon">🛡️</span>
-              </div>
-              <h4 class="overlay-title">SilentGuard</h4>
-              <p class="overlay-desc">
-                AI Failure Detection System Designed an intelligent system that monitors behavioral patterns to predict and prevent system failures before they happen, with a focus on anomaly detection and real-time preventive alerts for industrial reliability.
-              </p>
-              <div class="overlay-links">
-                <a href="#" class="overlay-btn overlay-btn-github" target="_blank" rel="noopener noreferrer">GitHub ⌥</a>
-                <a href="#" class="overlay-btn overlay-btn-live" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
-              </div>
+            </article>
+        </div
+
+        <!-- Group 2 (Duplicate for Seamless Loop) -->
+        <div class="projects-marquee-group" aria-hidden="true">
+          <!-- Card 1 -->
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=resq'" style="cursor: pointer;">
+
+            <div class="project-card-thumb">
+              <img src="image-project/resq.jpeg" alt="ResQ" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>R</div>'" />
             </div>
-          </article>
+            <h3 class="project-card-title">ResQ – AI-Powered Campus Crisis Command Center</h3>
+            <p class="project-card-desc">
+              AI-powered real-time campus crisis management system with role-based access, built using React, Vite, Firebase, Node.js, and Gemini 1.5 Flash. Integrated AI-based incident triage, automated report generation, and Firebase real-time services for alerts and synchronization.
+            </p>
+            <div class="project-card-tags">
+              <span class="project-card-tag">React</span>
+              <span class="project-card-tag">Firebase</span>
+              <span class="project-card-tag">Node.js</span>
+              <span class="project-card-tag">Gemini 1.5 flash</span>
+            </div>
+            
+            </article>
+
+          
+          <!-- Card 2 -->
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=voice'" style="cursor: pointer;">
+
+            <div class="project-card-thumb">
+              <img src="image-project/voice-ivory.jpeg" alt="Voice-First Task Assistant" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>V</div>'" />
+            </div>
+            <h3 class="project-card-title">Voice-First Task Assistant</h3>
+            <p class="project-card-desc">
+              React + FastAPI app with Groq LLM integration. Voice-controlled emails, clipboard summaries, and to-do management — built under a one-hour time constraint.
+            </p>
+            <div class="project-card-tags">
+              <span class="project-card-tag">React</span>
+              <span class="project-card-tag">FastAPI</span>
+              <span class="project-card-tag">Groq API</span>
+              <span class="project-card-tag">Gmail SMTP</span>
+            </div>
+            
+            </article>
+
+          <!-- Card 3 -->
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=pylon'" style="cursor: pointer;">
+
+            <div class="project-card-thumb">
+              <img src="image-project/pylon.jpeg" alt="Pylon" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>P</div>'" />
+            </div>
+            <h3 class="project-card-title">Pylon -Scholarship Hub</h3>
+            <p class="project-card-desc">
+              A student-focused platform to discover and apply for scholarships. Students fill in their profile and get matched with relevant scholarship opportunities.
+            </p>
+            <div class="project-card-tags">
+              <span class="project-card-tag">HTML</span>
+              <span class="project-card-tag">CSS</span>
+              <span class="project-card-tag">JavaScript</span>
+              <span class="project-card-tag">LocalStorage</span>
+            </div>
+            
+            </article>
+
+          <!-- Card 5 -->
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=codeburry'" style="cursor: pointer;">
+
+            <div class="project-card-thumb">
+              <img src="image-project/code-burry.jpeg" alt="CodeBurry" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>C</div>'" />
+            </div>
+            <h3 class="project-card-title">CodeBurry</h3>
+            <p class="project-card-desc">
+              Gamified Learning Platform Built an interactive learning platform that turns skill development into a game-like experience, using a growth-based progress system to keep learners motivated and engaged through hands-on challenges.
+            </p>
+            <div class="project-card-tags">
+              <span class="project-card-tag">React</span>
+              <span class="project-card-tag">TypeScript</span>
+              <span class="project-card-tag">TailwindCSS</span>
+            </div>
+            
+            </article>
+
+          <!-- Card 6 -->
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=silentguard'" style="cursor: pointer;">
+
+            <div class="project-card-thumb">
+              <img src="image-project/Silent-quard.png" alt="SilentGuard" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>S</div>'" />
+            </div>
+            <h3 class="project-card-title">SilentGuard</h3>
+            <p class="project-card-desc">
+              AI Failure Detection System Designed an intelligent system that monitors behavioral patterns to predict and prevent system failures before they happen, with a focus on anomaly detection and real-time preventive alerts for industrial reliability.
+            </p>
+            <div class="project-card-tags">
+              <span class="project-card-tag">Python</span>
+              <span class="project-card-tag">Streamlite</span>
+              <span class="project-card-tag">Numpy</span>
+            </div>
+            
+            </article>
         </div>
 
         </div>
