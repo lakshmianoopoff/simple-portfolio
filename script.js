@@ -764,6 +764,20 @@ function initCertificatesGallery() {
       closeAll();
     }
   });
+
+  // Scroll Hint Logic
+  const scrollArea = document.getElementById('cert-scroll-area');
+  const scrollHint = document.getElementById('cert-scroll-hint');
+  
+  if (scrollArea && scrollHint) {
+    scrollArea.addEventListener('scroll', () => {
+      if (scrollArea.scrollTop > 10) {
+        scrollHint.classList.add('hidden');
+      } else {
+        scrollHint.classList.remove('hidden');
+      }
+    }, { passive: true });
+  }
 }
 
 // Initialize gallery
