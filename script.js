@@ -82,54 +82,56 @@ function saveResponses(arr) {
 const submitBtn  = document.getElementById('submit-contact');
 const formStatus = document.getElementById('form-status');
 
-submitBtn.addEventListener('click', () => {
-  const name    = document.getElementById('cf-name').value.trim();
-  const email   = document.getElementById('cf-email').value.trim();
-  const subject = document.getElementById('cf-subject').value;
-  const message = document.getElementById('cf-message').value.trim();
+if (submitBtn) {
+  submitBtn.addEventListener('click', () => {
+    const name    = document.getElementById('cf-name').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const subject = document.getElementById('cf-subject').value;
+    const message = document.getElementById('cf-message').value.trim();
 
 
-  if (!name || !email || !subject || !message) {
-    formStatus.className   = 'error';
-    formStatus.textContent = '⚠ Please fill in all fields before submitting.';
-    return;
-  }
+    if (!name || !email || !subject || !message) {
+      formStatus.className   = 'error';
+      formStatus.textContent = '⚠ Please fill in all fields before submitting.';
+      return;
+    }
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    formStatus.className   = 'error';
-    formStatus.textContent = '⚠ Please enter a valid email address.';
-    return;
-  }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      formStatus.className   = 'error';
+      formStatus.textContent = '⚠ Please enter a valid email address.';
+      return;
+    }
 
-  const entry = {
-    id:        Date.now(),
-    name,
-    email,
-    subject,
-    message,
-    timestamp: new Date().toISOString()     // ISO 8601 — easy to format later
-  };
-
-
-  const responses = getResponses();
-  responses.unshift(entry);
-  saveResponses(responses);
+    const entry = {
+      id:        Date.now(),
+      name,
+      email,
+      subject,
+      message,
+      timestamp: new Date().toISOString()     // ISO 8601 — easy to format later
+    };
 
 
-  document.getElementById('cf-name').value    = '';
-  document.getElementById('cf-email').value   = '';
-  document.getElementById('cf-subject').value = '';
-  document.getElementById('cf-message').value = '';
+    const responses = getResponses();
+    responses.unshift(entry);
+    saveResponses(responses);
 
 
-  formStatus.className   = 'success';
-  formStatus.textContent = '✓ Message sent! I\'ll get back to you soon.';
+    document.getElementById('cf-name').value    = '';
+    document.getElementById('cf-email').value   = '';
+    document.getElementById('cf-subject').value = '';
+    document.getElementById('cf-message').value = '';
 
-  setTimeout(() => {
-    formStatus.className   = '';
-    formStatus.textContent = '';
-  }, 4000);
-});
+
+    formStatus.className   = 'success';
+    formStatus.textContent = '✓ Message sent! I\'ll get back to you soon.';
+
+    setTimeout(() => {
+      formStatus.className   = '';
+      formStatus.textContent = '';
+    }, 4000);
+  });
+}
 
 
 
@@ -176,25 +178,29 @@ function updateAdminVisibility() {
 
 updateAdminVisibility();
 
-loginBtn.addEventListener('click', () => {
-  const user = document.getElementById('admin-user').value.trim();
-  const pass = document.getElementById('admin-pass').value;
+if (loginBtn) {
+  loginBtn.addEventListener('click', () => {
+    const user = document.getElementById('admin-user').value.trim();
+    const pass = document.getElementById('admin-pass').value;
 
-  if (user === ADMIN_USER && pass === ADMIN_PASS) {
-    loginError.textContent = '';
-    loginError.classList.remove('visible');
-    setAdminAuthed(true);
-    showAdminArea();
-  } else {
-    loginError.textContent = 'Incorrect username or password.';
-    loginError.classList.add('visible');
+    if (user === ADMIN_USER && pass === ADMIN_PASS) {
+      loginError.textContent = '';
+      loginError.classList.remove('visible');
+      setAdminAuthed(true);
+      showAdminArea();
+    } else {
+      loginError.textContent = 'Incorrect username or password.';
+      loginError.classList.add('visible');
+    }
+  });
+
+  const adminPass = document.getElementById('admin-pass');
+  if (adminPass) {
+    adminPass.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') loginBtn.click();
+    });
   }
-});
-
-
-document.getElementById('admin-pass').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') loginBtn.click();
-});
+}
 
 
 document.addEventListener('keydown', (e) => {
@@ -204,12 +210,17 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-document.getElementById('admin-logout-btn').addEventListener('click', () => {
-  setAdminAuthed(false);
-  document.getElementById('admin-user').value = '';
-  document.getElementById('admin-pass').value = '';
-  hideAdminArea();
-});
+const adminLogoutBtn = document.getElementById('admin-logout-btn');
+if (adminLogoutBtn) {
+  adminLogoutBtn.addEventListener('click', () => {
+    setAdminAuthed(false);
+    const adminUser = document.getElementById('admin-user');
+    const adminPass = document.getElementById('admin-pass');
+    if (adminUser) adminUser.value = '';
+    if (adminPass) adminPass.value = '';
+    hideAdminArea();
+  });
+}
 
 
 
@@ -238,6 +249,8 @@ function renderResponses() {
   const countBadge = document.getElementById('response-count');
   const responses  = getResponses();
 
+  if(!countBadge || !list) return;
+
   countBadge.textContent = responses.length;
 
   if (responses.length === 0) {
@@ -263,12 +276,15 @@ function renderResponses() {
 }
 
 
-document.getElementById('clear-responses-btn').addEventListener('click', () => {
-  if (confirm('Delete all stored responses? This cannot be undone.')) {
-    localStorage.removeItem(LS_KEY);
-    renderResponses();
-  }
-});
+const clearBtn = document.getElementById('clear-responses-btn');
+if (clearBtn) {
+  clearBtn.addEventListener('click', () => {
+    if (confirm('Delete all stored responses? This cannot be undone.')) {
+      localStorage.removeItem(LS_KEY);
+      renderResponses();
+    }
+  });
+}
 
 
 window.addEventListener('storage', (e) => {
@@ -503,7 +519,7 @@ function runSkillsAnimation() {
     // 2. Reveal text components sequentially (staggered delay is handled inside CSS based on content-visible class)
     skillsTimeouts.push(setTimeout(() => {
       cards[cardIndex].classList.add('content-visible');
-    }, startTime + 150));
+    }, startTime + 100));
   };
 
   // Card 1
@@ -512,37 +528,37 @@ function runSkillsAnimation() {
   // Line 01->02
   skillsTimeouts.push(setTimeout(() => {
     drawLine(0, 1);
-  }, 750));
+  }, 300));
 
   // Card 2
-  animateCardSequence(1, 1250);
+  animateCardSequence(1, 700);
 
   // Line 02->03
   skillsTimeouts.push(setTimeout(() => {
     drawLine(1, 2);
-  }, 2000));
+  }, 1000));
 
   // Card 3
-  animateCardSequence(2, 2500);
+  animateCardSequence(2, 1400);
 
   // Card 4 starts right after Card 3 (no line between 3 and 4)
-  animateCardSequence(3, 3100);
+  animateCardSequence(3, 1700);
 
   // Line 04->05
   skillsTimeouts.push(setTimeout(() => {
     drawLine(3, 4);
-  }, 3850));
+  }, 2000));
 
   // Card 5
-  animateCardSequence(4, 4350);
+  animateCardSequence(4, 2400);
 
   // Line 05->06
   skillsTimeouts.push(setTimeout(() => {
     drawLine(4, 5);
-  }, 5100));
+  }, 2700));
 
   // Card 6
-  animateCardSequence(5, 5600);
+  animateCardSequence(5, 3100);
 }
 
 function initSkillsConnectors() {
@@ -782,3 +798,62 @@ function initCertificatesGallery() {
 
 // Initialize gallery
 initCertificatesGallery();
+
+// --- Scroll Progress Bar ---
+window.addEventListener('scroll', () => {
+  const scrollProgress = document.getElementById('scroll-progress');
+  if (scrollProgress) {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    scrollProgress.style.width = scrollPercent + '%';
+  }
+});
+
+// --- Cursor Trail Effect ---
+const trailDots = [];
+const trailLength = 6;
+for (let i = 0; i < trailLength; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'cursor-trail-dot';
+  document.body.appendChild(dot);
+  trailDots.push({ el: dot, x: 0, y: 0, life: 0 });
+}
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let isMouseMoving = false;
+let hideTimeout;
+
+window.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  isMouseMoving = true;
+  
+  clearTimeout(hideTimeout);
+  hideTimeout = setTimeout(() => {
+    isMouseMoving = false;
+  }, 100);
+});
+
+function animateTrail() {
+  let x = mouseX;
+  let y = mouseY;
+
+  trailDots.forEach((dotObj, index) => {
+    dotObj.x += (x - dotObj.x) * 0.4;
+    dotObj.y += (y - dotObj.y) * 0.4;
+    
+    const scale = (trailLength - index) / trailLength;
+    const opacity = isMouseMoving ? scale * 0.6 : 0;
+    
+    dotObj.el.style.transform = `translate(${dotObj.x}px, ${dotObj.y}px) scale(${scale})`;
+    dotObj.el.style.opacity = opacity;
+
+    x = dotObj.x;
+    y = dotObj.y;
+  });
+  
+  requestAnimationFrame(animateTrail);
+}
+animateTrail();
