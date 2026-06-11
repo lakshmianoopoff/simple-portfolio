@@ -3653,3 +3653,31 @@ h1, h2, h3, h4, h5, h6 {
   transform: none !important;
 }
 
+/* Projects Hover Overlay Redesign */
+.project-marquee-card .project-card-overlay {
+  background: rgba(10, 10, 10, 0.85) !important;
+  backdrop-filter: blur(6px) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  overflow: hidden !important;
+  text-align: center !important;
+}
+
+.project-marquee-card .overlay-hint {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35); /* Elegant semi-transparent font */
+  transition: color 0.3s ease;
+  pointer-events: none;
+}
+.project-marquee-card:hover .overlay-hint {
+  color: rgba(255, 255, 255, 0.75);
+}
+
