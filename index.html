@@ -33,13 +33,29 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
 
-      <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
-        <span class="icon" id="themeIcon">☀️</span>
-        <span id="themeLabel">Light</span>
-      </button>
+      <div class="nav-right-controls" style="display: flex; align-items: center; gap: 12px;">
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
+          <span class="icon" id="themeIcon">☀️</span>
+          <span id="themeLabel">Light</span>
+        </button>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">☰</button>
+      </div>
 
     </div>
   </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <button class="mobile-menu-close" id="mobileMenuClose">&times;</button>
+    <ul class="mobile-nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 
 
 

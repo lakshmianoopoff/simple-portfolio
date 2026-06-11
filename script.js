@@ -811,49 +811,75 @@ window.addEventListener('scroll', () => {
 });
 
 // --- Cursor Trail Effect ---
-const trailDots = [];
-const trailLength = 6;
-for (let i = 0; i < trailLength; i++) {
-  const dot = document.createElement('div');
-  dot.className = 'cursor-trail-dot';
-  document.body.appendChild(dot);
-  trailDots.push({ el: dot, x: 0, y: 0, life: 0 });
-}
+if (!window.matchMedia('(pointer: coarse)').matches) {
+  const trailDots = [];
+  const trailLength = 6;
+  for (let i = 0; i < trailLength; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-trail-dot';
+    document.body.appendChild(dot);
+    trailDots.push({ el: dot, x: 0, y: 0, life: 0 });
+  }
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let isMouseMoving = false;
-let hideTimeout;
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let isMouseMoving = false;
+  let hideTimeout;
 
-window.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  isMouseMoving = true;
-  
-  clearTimeout(hideTimeout);
-  hideTimeout = setTimeout(() => {
-    isMouseMoving = false;
-  }, 100);
-});
-
-function animateTrail() {
-  let x = mouseX;
-  let y = mouseY;
-
-  trailDots.forEach((dotObj, index) => {
-    dotObj.x += (x - dotObj.x) * 0.4;
-    dotObj.y += (y - dotObj.y) * 0.4;
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    isMouseMoving = true;
     
-    const scale = (trailLength - index) / trailLength;
-    const opacity = isMouseMoving ? scale * 0.6 : 0;
-    
-    dotObj.el.style.transform = `translate(${dotObj.x}px, ${dotObj.y}px) scale(${scale})`;
-    dotObj.el.style.opacity = opacity;
-
-    x = dotObj.x;
-    y = dotObj.y;
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      isMouseMoving = false;
+    }, 100);
   });
-  
-  requestAnimationFrame(animateTrail);
+
+  function animateTrail() {
+    let x = mouseX;
+    let y = mouseY;
+
+    trailDots.forEach((dotObj, index) => {
+      dotObj.x += (x - dotObj.x) * 0.4;
+      dotObj.y += (y - dotObj.y) * 0.4;
+      
+      const scale = (trailLength - index) / trailLength;
+      const opacity = isMouseMoving ? scale * 0.6 : 0;
+      
+      dotObj.el.style.transform = `translate(${dotObj.x}px, ${dotObj.y}px) scale(${scale})`;
+      dotObj.el.style.opacity = opacity;
+
+      x = dotObj.x;
+      y = dotObj.y;
+    });
+    
+    requestAnimationFrame(animateTrail);
+  }
+  animateTrail();
 }
-animateTrail();
+
+// --- Mobile Hamburger Menu ---
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+if (hamburgerBtn && mobileMenuOverlay && mobileMenuClose) {
+  hamburgerBtn.addEventListener('click', () => {
+    mobileMenuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  const closeMenu = () => {
+    mobileMenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  mobileMenuClose.addEventListener('click', closeMenu);
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+}
