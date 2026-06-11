@@ -3483,3 +3483,173 @@ body.modal-open {
 .mega-footer-giant { font-family: 'Instrument Serif', serif; font-size: 20vw; line-height: 0.75; color: var(--text); white-space: nowrap; text-align: center; margin-bottom: -3.5vw; letter-spacing: -0.02em; }
 .mega-footer-giant i { font-style: italic; padding-right: 0.05em; }
 @media (max-width: 860px) { .mega-footer-top { flex-direction: column; align-items: center; text-align: center; } }
+
+/* ==========================================================================
+   EDITORIAL & ASYMMETRIC REDESIGN OVERRIDES (PROJECTS & SKILLS)
+   ========================================================================== */
+
+/* Global Typography Polish */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.12 !important;
+}
+.section-label, 
+.about-section-label, 
+.subtitle, 
+.cta-subtitle, 
+.about-bio-text, 
+.project-card-desc, 
+.skill-desc {
+  text-align: left !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.04em !important;
+}
+.about-header {
+  text-align: left !important;
+}
+
+/* Projects Section Redesign */
+.projects-ticker-section .container {
+  max-width: 100% !important;
+  padding-left: 6% !important;
+  text-align: left !important;
+}
+.projects-ticker-section .section-title {
+  text-align: left !important;
+  font-size: clamp(4.5rem, 9.5vw, 10rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.85 !important;
+  text-transform: uppercase !important;
+  margin-left: -20px !important;
+  width: 120% !important;
+  margin-top: 15px !important;
+  margin-bottom: 50px !important;
+}
+
+/* Massive & Asymmetric Project Cards */
+.project-marquee-card {
+  width: 640px !important;
+  height: 600px !important;
+  border-radius: 4px !important;
+  padding: 40px !important;
+  gap: 24px !important;
+  border: 1px solid var(--border) !important;
+}
+.projects-marquee-group {
+  gap: 48px !important;
+  padding: 60px 24px !important;
+  align-items: center !important;
+}
+/* Staggered alternating heights for wave layout */
+.projects-marquee-track .project-marquee-card:nth-child(even),
+.projects-marquee-group .project-marquee-card:nth-child(even) {
+  height: 640px !important;
+  margin-top: -20px !important;
+}
+.project-card-thumb {
+  height: 340px !important;
+  border-radius: 2px !important;
+}
+.project-card-title {
+  font-size: 2.3rem !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.1 !important;
+  margin-top: 10px !important;
+}
+.project-card-tag {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-muted) !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  padding: 4px 8px !important;
+  border-radius: 2px !important;
+  letter-spacing: -0.01em !important;
+  text-transform: uppercase !important;
+}
+/* Corner design slash */
+.project-marquee-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 15px !important;
+  right: -25px !important;
+  width: 80px !important;
+  height: 1px !important;
+  background: var(--accent) !important;
+  transform: rotate(45deg) !important;
+  z-index: 5 !important;
+}
+
+/* Skills Section Redesign */
+.outlined-text {
+  color: transparent !important;
+  -webkit-text-stroke: 1.5px var(--text) !important;
+}
+[data-theme="light"] .outlined-text {
+  -webkit-text-stroke: 1.5px var(--text) !important;
+}
+
+/* Varied widths for Skills Cards */
+.skill-card {
+  justify-self: center !important;
+  width: 100% !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 6px 10px 28px rgba(0, 0, 0, 0.35), -1px -1px 8px rgba(255, 255, 255, 0.01) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+[data-theme="light"] .skill-card {
+  box-shadow: 6px 10px 28px rgba(0, 0, 0, 0.08), -1px -1px 8px rgba(0, 0, 0, 0.01) !important;
+  background: #ffffff !important;
+}
+.skill-card:nth-child(3n+1) {
+  width: 110% !important;
+}
+.skill-card:nth-child(3n+2) {
+  width: 90% !important;
+}
+.skill-card:nth-child(3n) {
+  width: 100% !important;
+}
+
+/* More dramatic scattered positioning */
+@media (min-width: 1024px) {
+  .skill-card:nth-child(1) { --offsetX: -15px !important; --offsetY: 50px !important; --rotation: -3deg !important; }
+  .skill-card:nth-child(2) { --offsetX: 20px !important; --offsetY: -60px !important; --rotation: 4deg !important; }
+  .skill-card:nth-child(3) { --offsetX: -25px !important; --offsetY: 35px !important; --rotation: -2.5deg !important; }
+  .skill-card:nth-child(4) { --offsetX: 30px !important; --offsetY: -45px !important; --rotation: 3.5deg !important; }
+  .skill-card:nth-child(5) { --offsetX: -15px !important; --offsetY: 60px !important; --rotation: -3.5deg !important; }
+  .skill-card:nth-child(6) { --offsetX: 20px !important; --offsetY: -20px !important; --rotation: 2deg !important; }
+}
+@media (max-width: 1023px) and (min-width: 768px) {
+  .skill-card:nth-child(1) { --offsetX: -10px !important; --offsetY: 35px !important; --rotation: -2.5deg !important; }
+  .skill-card:nth-child(2) { --offsetX: 12px !important; --offsetY: -45px !important; --rotation: 3deg !important; }
+  .skill-card:nth-child(3) { --offsetX: -18px !important; --offsetY: 30px !important; --rotation: -2deg !important; }
+  .skill-card:nth-child(4) { --offsetX: 18px !important; --offsetY: -30px !important; --rotation: 2.5deg !important; }
+  .skill-card:nth-child(5) { --offsetX: -12px !important; --offsetY: 50px !important; --rotation: -3deg !important; }
+  .skill-card:nth-child(6) { --offsetX: 12px !important; --offsetY: -15px !important; --rotation: 1.5deg !important; }
+}
+
+/* Semi-transparent watermark number behind content */
+.skill-card .skill-number {
+  position: absolute !important;
+  bottom: -20px !important;
+  right: 0px !important;
+  font-size: 110px !important;
+  font-weight: 900 !important;
+  color: var(--text) !important;
+  opacity: 0.05 !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+.skill-card.content-visible .skill-number {
+  opacity: 0.05 !important;
+  transform: none !important;
+}
+

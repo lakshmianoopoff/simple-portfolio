@@ -218,26 +218,7 @@
       padding: 0 !important;
     }
 
-    .availability-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--accent);
-      background: rgba(127, 255, 178, 0.1);
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin-bottom: 8px;
-      opacity: 0;
-      transform: translateY(15px);
-      animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: 0.15s;
-      border: 1px solid rgba(127, 255, 178, 0.2);
-    }
-    [data-theme="light"] .availability-badge {
-      background: rgba(26, 122, 60, 0.1);
-      border-color: rgba(26, 122, 60, 0.2);
-    }
+
 
     .pill-btn {
       position: relative;
@@ -582,6 +563,94 @@
         padding: 20px 16px;
       }
     }
+
+    /* Asymmetric, Editorial Redesign Overrides */
+    .bio-container {
+      align-items: flex-start !important;
+      text-align: left !important;
+      max-width: 650px !important;
+      padding-left: 5% !important;
+      position: relative !important;
+    }
+    
+    .profile-avatar-wrap {
+      margin-left: 5% !important;
+      align-self: flex-start !important;
+    }
+    
+    .profile-name {
+      margin-left: 5% !important;
+      text-align: left !important;
+      align-self: flex-start !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.02em !important;
+    }
+    
+    .profile-tagline {
+      margin-left: 5% !important;
+      text-align: left !important;
+      align-self: flex-start !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.04em !important;
+    }
+
+    .icon-row {
+      margin-left: 5% !important;
+      align-self: flex-start !important;
+      justify-content: flex-start !important;
+      gap: 16px !important;
+    }
+
+    .category-label {
+      justify-content: flex-start !important;
+      margin-left: 5% !important;
+      width: auto !important;
+    }
+    .category-label::before {
+      display: none !important;
+    }
+
+    /* Pill buttons: stay full width but uneven padding (more left padding) */
+    .pill-btn {
+      padding-left: 36px !important;
+      padding-right: 18px !important;
+      justify-content: flex-start !important;
+    }
+
+    /* Alternating border radius on pill buttons */
+    .pill-btn:nth-child(odd) {
+      border-radius: 50px !important;
+    }
+    .pill-btn:nth-child(even) {
+      border-radius: 8px !important;
+    }
+
+    /* Hello/Let's Talk watermark behind content */
+    .contact-page-wrapper::before {
+      content: "HELLO" !important;
+      position: fixed !important;
+      bottom: 2% !important;
+      right: 2% !important;
+      font-size: 18vw !important;
+      font-family: var(--font-display) !important;
+      font-weight: 900 !important;
+      color: #ffffff !important;
+      opacity: 0.025 !important;
+      z-index: 0 !important;
+      pointer-events: none !important;
+      letter-spacing: -0.05em !important;
+      white-space: nowrap !important;
+      line-height: 0.8 !important;
+    }
+
+
+
+    /* Irregular container circle sizing for icon buttons */
+    .icon-btn:nth-child(5n+1) { width: 38px !important; height: 38px !important; }
+    .icon-btn:nth-child(5n+2) { width: 44px !important; height: 44px !important; }
+    .icon-btn:nth-child(5n+3) { width: 40px !important; height: 40px !important; }
+    .icon-btn:nth-child(5n+4) { width: 46px !important; height: 46px !important; }
+    .icon-btn:nth-child(5n)   { width: 42px !important; height: 42px !important; }
   </style>
 </head>
 
@@ -603,7 +672,6 @@
     </header>
 
     <div class="bio-container" id="bioContainer">
-      
       <!-- PROFILE SECTION -->
       <div class="profile-avatar-wrap">
         <img src="photo2.png" alt="Lakshmi Anoop" class="profile-avatar" onerror="this.src='photo.png';" />
