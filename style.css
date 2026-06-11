@@ -171,7 +171,7 @@ nav#navbar.nav-scrolled {
 }
 
 .nav-logo {
-  font-family: 'General Sans', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   font-size: 1.35rem;
   color: var(--text);
@@ -4598,5 +4598,45 @@ h1, h2, h3, h4, h5, h6 {
   h2, .section-title, .about-title-large {
     max-width: 100% !important;
     word-break: break-word !important;
+  }
+}
+
+
+/* ==========================================
+   USER MOBILE FIXES V3: HERO IMAGE & BADGE
+   ========================================== */
+@media (max-width: 768px) {
+  /* Hide the badge on mobile */
+  .hero-status-pill {
+    display: none !important;
+  }
+  
+  /* Increase the size of the hero image */
+  .hero-portrait-wrap {
+    max-width: 340px !important;
+    max-height: 420px !important;
+    width: 100% !important;
+  }
+}
+
+
+/* ==========================================
+   USER MOBILE FIXES V4: HERO TWEAKS
+   ========================================== */
+@media (max-width: 768px) {
+  /* Increase image size even more */
+  .hero-portrait-wrap {
+    max-width: 380px !important;
+    max-height: 480px !important;
+    width: 100% !important;
+  }
+  
+  /* Push text a bit below and reduce line height (reduce height of text block) */
+  .hero-headline {
+    margin-top: 40px !important; /* Move text a bit below */
+    line-height: 1.1 !important; /* Reduce the height between the lines */
+  }
+  .line-top, .line-bottom {
+    line-height: 1.1 !important;
   }
 }

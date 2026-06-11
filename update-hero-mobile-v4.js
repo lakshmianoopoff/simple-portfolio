@@ -1,0 +1,45 @@
+const fs = require('fs');
+const path = require('path');
+
+const cssFile = path.join(__dirname, 'style.css');
+let cssContent = fs.readFileSync(cssFile, 'utf8');
+
+const newCSS = `
+
+/* ==========================================
+   USER MOBILE FIXES V4: HERO TWEAKS
+   ========================================== */
+@media (max-width: 768px) {
+  /* Increase image size even more */
+  .hero-portrait-wrap {
+    max-width: 380px !important;
+    max-height: 480px !important;
+    width: 100% !important;
+  }
+  
+  /* Push text a bit below and reduce line height (reduce height of text block) */
+  .hero-headline {
+    margin-top: 40px !important; /* Move text a bit below */
+    line-height: 1.1 !important; /* Reduce the height between the lines */
+  }
+  .line-top, .line-bottom {
+    line-height: 1.1 !important;
+  }
+}
+`;
+
+fs.appendFileSync(cssFile, newCSS);
+console.log('Appended mobile fixes to style.css');
+
+const htmlFile = path.join(__dirname, 'index.html');
+let htmlContent = fs.readFileSync(htmlFile, 'utf8');
+htmlContent = htmlContent.replace(/style\.css\?v=\d+/g, 'style.css?v=14');
+fs.writeFileSync(htmlFile, htmlContent);
+console.log('Updated cache buster in index.html to v=14');
+
+const contactFile = path.join(__dirname, 'contact.html');
+if (fs.existsSync(contactFile)) {
+  let contactContent = fs.readFileSync(contactFile, 'utf8');
+  contactContent = contactContent.replace(/style\.css\?v=\d+/g, 'style.css?v=14');
+  fs.writeFileSync(contactFile, contactContent);
+}

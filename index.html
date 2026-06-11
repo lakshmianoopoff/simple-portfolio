@@ -4,7 +4,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lakshmi — Portfolio</title>
+  <title>Lakshmi Anoop | Full-Stack Developer Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Lakshmi Anoop, a Full-Stack Developer specializing in building robust, user-centric software solutions. Explore my projects, skills, and experience." />
+  <meta name="keywords"
+    content="Lakshmi Anoop, Full-Stack Developer, Portfolio, Software Engineering, React, Node.js, Web Development, India" />
+  <meta name="author" content="Lakshmi Anoop" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lakshmi Anoop — Full-Stack Developer Portfolio" />
+  <meta property="og:description"
+    content="Portfolio of Lakshmi Anoop, a Full-Stack Developer specializing in building robust, user-centric software solutions. Explore my projects, skills, and experience." />
+  <meta property="og:image" content="photo.png" />
+  <meta property="og:url" content="https://lakshmianoop.in/" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lakshmi Anoop — Full-Stack Developer Portfolio" />
+  <meta name="twitter:description"
+    content="Portfolio of Lakshmi Anoop, a Full-Stack Developer specializing in building robust, user-centric software solutions. Explore my projects, skills, and experience." />
+  <meta name="twitter:image" content="photo.png" />
+
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://lakshmianoop.in/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +35,24 @@
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap"
     rel="stylesheet" />
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=11" />
+  <link rel="stylesheet" href="style.css?v=14" />
+
+  <!-- Structured Data for Google (Person Schema) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Lakshmi Anoop",
+    "url": "https://lakshmianoop.in/",
+    "jobTitle": "Full-Stack Developer",
+    "alumniOf": "B.Tech Computer Science",
+    "sameAs": [
+      "https://www.linkedin.com/in/lakshmianoop",
+      "https://www.instagram.com/lxksmii?igsh=Y3BhN2EwbjB2a3d1"
+    ],
+    "knowsAbout": ["Software Development", "React", "Node.js", "Full-Stack Engineering"]
+  }
+  </script>
 </head>
 
 <body>
@@ -70,10 +110,6 @@
 
         <!-- Left Column -->
         <div class="hero-side-col hero-left-col">
-          <div class="hero-status-pill">
-            <span class="pulse-dot"></span>
-            Open to opportunities
-          </div>
 
           <div class="hero-left-detail">
             <div class="detail-text">
@@ -143,7 +179,7 @@
         <div class="about-photo-column reveal-on-scroll" style="transition-delay: 0.1s;">
           <div class="about-card-wrapper">
             <div class="about-image-card">
-              <img src="photo2.png" alt="Lakshmi Anoop" class="about-card-img" />
+              <img loading="lazy" src="photo2.png" alt="Lakshmi Anoop" class="about-card-img" />
             </div>
             <div class="about-card-footer">
               <div class="about-socials">
@@ -211,7 +247,6 @@
               <div class="fact-col fact-value-col">Open to opportunities</div>
               <div class="fact-col fact-extra-col">
                 <span class="status-indicator">
-                  <span class="pulse-dot"></span>
                   Available
                 </span>
               </div>
@@ -235,9 +270,10 @@
         <!-- Group 1 -->
         <div class="projects-marquee-group">
           <!-- Card 1 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=resq'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=resq'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/resq.jpeg" alt="ResQ"
+              <img loading="lazy" src="image-project/resq.jpeg" alt="ResQ"
                 onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>R</div>'" />
             </div>
             <h3 class="project-card-title">ResQ – AI-Powered Campus Crisis Command Center</h3>
@@ -260,9 +296,11 @@
 
 
           <!-- Card 2 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=voice'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=voice'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/voice-ivory.jpeg" alt="Voice-Ivory" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\' style=\'background: #1a1a1a;\'>VI</div>';" />
+              <img loading="lazy" src="image-project/voice-ivory.jpeg" alt="Voice-Ivory"
+                onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\' style=\'background: #1a1a1a;\'>VI</div>';" />
             </div>
             <h3 class="project-card-title">Voice-Ivory</h3>
             <p class="project-card-desc">
@@ -282,9 +320,10 @@
           </article>
 
           <!-- Card 3 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=pylon'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=pylon'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/pylon.jpeg" alt="Pylon"
+              <img loading="lazy" src="image-project/pylon.jpeg" alt="Pylon"
                 onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>P</div>'" />
             </div>
             <h3 class="project-card-title">Pylon -Scholarship Hub</h3>
@@ -305,9 +344,10 @@
           </article>
 
           <!-- Card 5 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=codeburry'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=codeburry'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/code-burry.jpeg" alt="CodeBurry"
+              <img loading="lazy" src="image-project/code-burry.jpeg" alt="CodeBurry"
                 onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>C</div>'" />
             </div>
             <h3 class="project-card-title">CodeBurry</h3>
@@ -328,9 +368,10 @@
           </article>
 
           <!-- Card 6 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=silentguard'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=silentguard'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/Silent-quard.png" alt="SilentGuard"
+              <img loading="lazy" src="image-project/Silent-quard.png" alt="SilentGuard"
                 onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>S</div>'" />
             </div>
             <h3 class="project-card-title">SilentGuard</h3>
@@ -352,9 +393,10 @@
         </div <!-- Group 2 (Duplicate for Seamless Loop) -->
         <div class="projects-marquee-group" aria-hidden="true">
           <!-- Card 1 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=resq'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=resq'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/resq.jpeg" alt="ResQ"
+              <img loading="lazy" src="image-project/resq.jpeg" alt="ResQ"
                 onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>R</div>'" />
             </div>
             <h3 class="project-card-title">ResQ – AI-Powered Campus Crisis Command Center</h3>
@@ -377,9 +419,11 @@
 
 
           <!-- Card 2 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=voice'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=voice'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/voice-ivory.jpeg" alt="Voice-Ivory" onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\' style=\'background: #1a1a1a;\'>VI</div>';" />
+              <img loading="lazy" src="image-project/voice-ivory.jpeg" alt="Voice-Ivory"
+                onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\' style=\'background: #1a1a1a;\'>VI</div>';" />
             </div>
             <h3 class="project-card-title">Voice-Ivory</h3>
             <p class="project-card-desc">
@@ -399,9 +443,10 @@
           </article>
 
           <!-- Card 3 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=pylon'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=pylon'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/pylon.jpeg" alt="Pylon"
+              <img loading="lazy" src="image-project/pylon.jpeg" alt="Pylon"
                 onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>P</div>'" />
             </div>
             <h3 class="project-card-title">Pylon -Scholarship Hub</h3>
@@ -422,9 +467,10 @@
           </article>
 
           <!-- Card 5 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=codeburry'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=codeburry'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/code-burry.jpeg" alt="CodeBurry"
+              <img loading="lazy" src="image-project/code-burry.jpeg" alt="CodeBurry"
                 onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>C</div>'" />
             </div>
             <h3 class="project-card-title">CodeBurry</h3>
@@ -445,9 +491,10 @@
           </article>
 
           <!-- Card 6 -->
-          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=silentguard'" style="cursor: pointer;">
+          <article class="project-marquee-card" onclick="window.location.href='project-details.html?id=silentguard'"
+            style="cursor: pointer;">
             <div class="project-card-thumb">
-              <img src="image-project/Silent-quard.png" alt="SilentGuard"
+              <img loading="lazy" src="image-project/Silent-quard.png" alt="SilentGuard"
                 onerror="this.onerror=null; this.outerHTML='<div class=\'img-fallback\'>S</div>'" />
             </div>
             <h3 class="project-card-title">SilentGuard</h3>
@@ -664,7 +711,7 @@
                 data-issuer="Google / Tech Community" data-year="2025"
                 data-description="Built and deployed autonomous AI agents to solve real-world automation challenges.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate1.jpg"
+                  <img loading="lazy" src="certificates/certificate1.jpg"
                     onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Agentic AI Hackathon">
                   <div class="cert-placeholder" style="display: none;">
@@ -682,7 +729,7 @@
               <div class="cert-card" data-category="hackathons" data-title="Webathon" data-issuer="Webathon"
                 data-year="2025" data-description="Participated and built solutions in a web development hackathon.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate2.jpeg"
+                  <img loading="lazy" src="certificates/certificate2.jpeg"
                     onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Webathon">
                   <div class="cert-placeholder" style="display: none;">
@@ -698,9 +745,10 @@
             <!-- Card Tech-Z Web Development -->
             <div class="cert-grid-item" style="--delay: 0.05s">
               <div class="cert-card" data-category="programs" data-title="Tech-Z Web Development" data-issuer="Tech-Z"
-                data-year="2025" data-description="Completed an in-depth professional web development certification course.">
+                data-year="2025"
+                data-description="Completed an in-depth professional web development certification course.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate3.jpeg"
+                  <img loading="lazy" src="certificates/certificate3.jpeg"
                     onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Tech-Z Web Development">
                   <div class="cert-placeholder" style="display: none;">
@@ -719,7 +767,7 @@
                 data-year="2025"
                 data-description="Showcased engineering projects and engaged in technical workshops at IV Spectra.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate4.jpeg"
+                  <img loading="lazy" src="certificates/certificate4.jpeg"
                     onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="IV Spectra">
                   <div class="cert-placeholder" style="display: none;">
@@ -738,7 +786,7 @@
                 data-year="2025"
                 data-description="Trained in startup frameworks, innovation principles, and business modeling.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate6.jpeg"
+                  <img loading="lazy" src="certificates/certificate6.jpeg"
                     onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="IEDC Cluster">
                   <div class="cert-placeholder" style="display: none;">
@@ -757,7 +805,7 @@
                 data-issuer="Vellore Institute of Technology" data-year="2025"
                 data-description="Participated in international technical symposium events and lectures.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate7.jpg"
+                  <img loading="lazy" src="certificates/certificate7.jpg"
                     onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Gravitas — VIT">
                   <div class="cert-placeholder" style="display: none;">
@@ -775,7 +823,7 @@
               <div class="cert-card" data-category="events" data-title="Quake Clash" data-issuer="CSEA" data-year="2025"
                 data-description="Designed algorithms and solved complex data challenges in a time-bound contest.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate5.jpeg"
+                  <img loading="lazy" src="certificates/certificate5.jpeg"
                     onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Quake Clash">
                   <div class="cert-placeholder" style="display: none;">
@@ -794,7 +842,7 @@
                 data-year="2025"
                 data-description="Competed in CodeBrew hackathon, building prototype solutions under tight time constraints.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate8.jpeg"
+                  <img loading="lazy" src="certificates/certificate8.jpeg"
                     onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="CodeBrew">
                   <div class="cert-placeholder" style="display: none;">
@@ -813,7 +861,7 @@
                 data-year="2025"
                 data-description="Explored the intersection of art, digital interfaces, and modern frontend technologies.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate9.jpeg"
+                  <img loading="lazy" src="certificates/certificate9.jpeg"
                     onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Kineart">
                   <div class="cert-placeholder" style="display: none;">
@@ -832,7 +880,7 @@
                 data-issuer="GD Club" data-year="2025"
                 data-description="Mastered game loops, physics engines, and graphics programming during a bootcamp.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate10.jpg"
+                  <img loading="lazy" src="certificates/certificate10.jpg"
                     onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Game Development Club Bootcamp">
                   <div class="cert-placeholder" style="display: none;">
@@ -851,7 +899,7 @@
                 data-year="2025"
                 data-description="A boot camp focusing on professional development and career acceleration.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate11.jpg"
+                  <img loading="lazy" src="certificates/certificate11.jpg"
                     onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Evolve">
                   <div class="cert-placeholder" style="display: none;">
@@ -870,7 +918,7 @@
                 data-issuer="Microsoft / Developer Club" data-year="2025"
                 data-description="Developed end-to-end full stack products leveraging Large Language Models.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate12.jpeg"
+                  <img loading="lazy" src="certificates/certificate12.jpeg"
                     onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Built with AI">
                   <div class="cert-placeholder" style="display: none;">
@@ -889,7 +937,7 @@
                 data-year="2025"
                 data-description="Completed intensive technical onboarding program for modern web tech stack.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate13.jpg"
+                  <img loading="lazy" src="certificates/certificate13.jpg"
                     onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Jumpstart">
                   <div class="cert-placeholder" style="display: none;">
@@ -908,7 +956,7 @@
                 data-issuer="Tech-Z / Toastmasters" data-year="2025"
                 data-description="Mastered speaking, public presentations, and pitch deck creation.">
                 <div class="cert-thumb">
-                  <img src="certificates/certificate15.jpg"
+                  <img loading="lazy" src="certificates/certificate15.jpg"
                     onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
                     alt="Unleash Your Voice">
                   <div class="cert-placeholder" style="display: none;">
@@ -970,7 +1018,7 @@
   <!-- Lightbox Overlay -->
   <div id="cert-lightbox" class="cert-lightbox">
     <div class="lightbox-content">
-      <img id="lightbox-img" src="" alt="Certificate View">
+      <img loading="lazy" id="lightbox-img" src="" alt="Certificate View">
     </div>
   </div>
 
@@ -979,7 +1027,7 @@
     <button class="panel-close-btn" aria-label="Close details">&times;</button>
     <div class="panel-inner">
       <div class="panel-thumb-container">
-        <img id="panel-cert-img" src="" alt="Certificate Detail View">
+        <img loading="lazy" id="panel-cert-img" src="" alt="Certificate Detail View">
       </div>
       <div class="panel-metadata">
         <span id="panel-category" class="panel-tag">Category</span>
