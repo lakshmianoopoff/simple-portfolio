@@ -898,3 +898,207 @@ if (hamburgerBtn && mobileMenuOverlay && mobileMenuClose) {
     link.addEventListener('click', closeMenu);
   });
 }
+
+// ==========================================================================
+// PROJECTS SECTION: ShapeGrid Animated Background (React Bits Implementation)
+// ==========================================================================
+(function initProjectsShapeGrid() {
+  const canvas = document.getElementById('projects-shapegrid-canvas');
+  const section = document.getElementById('projects');
+  if (!canvas || !section) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  // React Bits ShapeGrid Props
+  const speed = 0.5;
+  const squareSize = 40;
+  const hoverTrailAmount = 0;
+
+  const gridOffset = { x: 0, y: 0 };
+  let hoveredSquare = null;
+  const trailCells = [];
+  const cellOpacities = new Map();
+  let requestRef = null;
+  let isVisible = false;
+  let isPageVisible = !document.hidden;
+
+  const resizeCanvas = () => {
+    const width = section.offsetWidth || window.innerWidth;
+    const height = section.offsetHeight || 600;
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+  };
+
+  const drawGrid = () => {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const borderColor = isLight ? 'rgba(47, 41, 58, 0.16)' : '#2F293A';
+    const hoverFillColor = isLight ? 'rgba(47, 41, 58, 0.15)' : '#222222';
+    const vignetteEdge = isLight ? '#f4f3ef' : '#120F17';
+
+    const offsetX = ((gridOffset.x % squareSize) + squareSize) % squareSize;
+    const offsetY = ((gridOffset.y % squareSize) + squareSize) % squareSize;
+
+    const cols = Math.ceil(canvas.width / squareSize) + 3;
+    const rows = Math.ceil(canvas.height / squareSize) + 3;
+
+    for (let col = -2; col < cols; col++) {
+      for (let row = -2; row < rows; row++) {
+        const sx = col * squareSize + offsetX;
+        const sy = row * squareSize + offsetY;
+
+        const cellKey = `${col},${row}`;
+        const alpha = cellOpacities.get(cellKey);
+        if (alpha && alpha > 0.005) {
+          ctx.globalAlpha = Math.min(alpha, 1);
+          ctx.fillStyle = hoverFillColor;
+          ctx.fillRect(sx, sy, squareSize, squareSize);
+          ctx.globalAlpha = 1;
+        }
+
+        ctx.strokeStyle = borderColor;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(sx, sy, squareSize, squareSize);
+      }
+    }
+
+    // Radial vignette gradient as defined in React Bits ShapeGrid
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2;
+    const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+    gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+    gradient.addColorStop(1, vignetteEdge);
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  };
+
+  const updateCellOpacities = () => {
+    const targets = new Map();
+
+    if (hoveredSquare) {
+      targets.set(`${hoveredSquare.x},${hoveredSquare.y}`, 1);
+    }
+
+    if (hoverTrailAmount > 0) {
+      for (let i = 0; i < trailCells.length; i++) {
+        const t = trailCells[i];
+        const key = `${t.x},${t.y}`;
+        if (!targets.has(key)) {
+          targets.set(key, (trailCells.length - i) / (trailCells.length + 1));
+        }
+      }
+    }
+
+    for (const [key] of targets) {
+      if (!cellOpacities.has(key)) {
+        cellOpacities.set(key, 0);
+      }
+    }
+
+    for (const [key, opacity] of cellOpacities) {
+      const target = targets.get(key) || 0;
+      const next = opacity + (target - opacity) * 0.15;
+      if (next < 0.005) {
+        cellOpacities.delete(key);
+      } else {
+        cellOpacities.set(key, next);
+      }
+    }
+  };
+
+  const updateAnimation = () => {
+    const effectiveSpeed = Math.max(speed, 0.1);
+
+    // direction: diagonal (scrolls down-right seamlessly)
+    gridOffset.x = (gridOffset.x - effectiveSpeed + squareSize) % squareSize;
+    gridOffset.y = (gridOffset.y - effectiveSpeed + squareSize) % squareSize;
+
+    updateCellOpacities();
+    drawGrid();
+    requestRef = requestAnimationFrame(updateAnimation);
+  };
+
+  const handleMouseMove = (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    if (mouseX < 0 || mouseX > canvas.width || mouseY < 0 || mouseY > canvas.height) {
+      hoveredSquare = null;
+      return;
+    }
+
+    const offsetX = ((gridOffset.x % squareSize) + squareSize) % squareSize;
+    const offsetY = ((gridOffset.y % squareSize) + squareSize) % squareSize;
+
+    const adjustedX = mouseX - offsetX;
+    const adjustedY = mouseY - offsetY;
+
+    const col = Math.floor(adjustedX / squareSize);
+    const row = Math.floor(adjustedY / squareSize);
+
+    if (!hoveredSquare || hoveredSquare.x !== col || hoveredSquare.y !== row) {
+      if (hoveredSquare && hoverTrailAmount > 0) {
+        trailCells.unshift({ ...hoveredSquare });
+        if (trailCells.length > hoverTrailAmount) trailCells.length = hoverTrailAmount;
+      }
+      hoveredSquare = { x: col, y: row };
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (hoveredSquare && hoverTrailAmount > 0) {
+      trailCells.unshift({ ...hoveredSquare });
+      if (trailCells.length > hoverTrailAmount) trailCells.length = hoverTrailAmount;
+    }
+    hoveredSquare = null;
+  };
+
+  section.addEventListener('mousemove', handleMouseMove, { passive: true });
+  section.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+
+  const tryStart = () => {
+    if (isVisible && isPageVisible && !requestRef) {
+      requestRef = requestAnimationFrame(updateAnimation);
+    }
+  };
+
+  const tryStop = () => {
+    if (requestRef) {
+      cancelAnimationFrame(requestRef);
+      requestRef = null;
+    }
+  };
+
+  const io = new IntersectionObserver(([entry]) => {
+    isVisible = entry.isIntersecting;
+    isVisible ? tryStart() : tryStop();
+  }, { threshold: 0 });
+  io.observe(section);
+
+  document.addEventListener('visibilitychange', () => {
+    isPageVisible = !document.hidden;
+    isPageVisible ? tryStart() : tryStop();
+  });
+
+  // Keep canvas size synced with section
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(() => {
+      resizeCanvas();
+    });
+    ro.observe(section);
+  } else {
+    window.addEventListener('resize', resizeCanvas);
+  }
+
+  resizeCanvas();
+  tryStart();
+})();
+

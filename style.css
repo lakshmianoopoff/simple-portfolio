@@ -1323,11 +1323,33 @@ nav#navbar.nav-scrolled {
 
 
 .projects-ticker-section {
-  background: var(--bg);
+  background: #120F17;
   padding: 100px 0;
   position: relative;
   overflow: hidden;
   transition: background var(--transition);
+}
+
+[data-theme="light"] .projects-ticker-section {
+  background: var(--bg);
+}
+
+.projects-shapegrid-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.projects-ticker-section .container,
+.projects-marquee-container {
+  position: relative;
+  z-index: 1;
 }
 
 /* Marquee / Ticker Layout */
