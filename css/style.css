@@ -1,0 +1,24 @@
+/* ==========================================================================
+   MASTER DESIGN SYSTEM AGGREGATOR
+   Portfolio of Lakshmi Anoop - Modular CSS Architecture
+   ========================================================================== */
+
+/* 1. Core Tokens & Base */
+@import './variables.css';
+@import './base.css';
+
+/* 2. Component Layer */
+@import './components/navbar.css';
+@import './components/hero.css';
+@import './components/about.css';
+@import './components/skills.css';
+@import './components/projects.css';
+@import './components/experience.css';
+@import './components/certificates.css';
+@import './components/contact.css';
+@import './components/admin.css';
+@import './components/footer.css';
+@import './components/project-details.css';
+
+/* 3. Responsive Overrides & Mobile Layout Polish */
+@import './responsive.css';

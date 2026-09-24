@@ -1,0 +1,317 @@
+<!-- ==========================================================================
+     WALL OF WINS (CERTIFICATES GALLERY) SECTION
+     Interactive category filters, responsive credential cards with preview thumbnails,
+     and credential verification links.
+     ========================================================================== -->
+<section id="certificates" role="region" aria-label="Certificates" class="reveal-on-scroll">
+    <div class="container cert-section-container">
+      <!-- Left Panel: Sidebar -->
+      <aside class="cert-sidebar">
+        <div class="section-label">// CERTIFICATES</div>
+        <h2 class="section-title">Wall of Wins</h2>
+
+        <nav class="cert-filters" aria-label="Certificate filters">
+          <button class="filter-btn active" data-filter="all">
+            <span>All</span>
+            <span class="filter-count">(14)</span>
+          </button>
+          <button class="filter-btn" data-filter="hackathons">
+            <span>Hackathons</span>
+            <span class="filter-count">(5)</span>
+          </button>
+          <button class="filter-btn" data-filter="bootcamps">
+            <span>Bootcamps</span>
+            <span class="filter-count">(3)</span>
+          </button>
+          <button class="filter-btn" data-filter="programs">
+            <span>Programs</span>
+            <span class="filter-count">(3)</span>
+          </button>
+          <button class="filter-btn" data-filter="events">
+            <span>Events</span>
+            <span class="filter-count">(3)</span>
+          </button>
+        </nav>
+
+        <div class="cert-sidebar-footer">
+          <span class="cert-total-text">14 certificates &middot; growing</span>
+        </div>
+      </aside>
+
+      <!-- Right Panel: Grid -->
+      <main class="cert-main-panel">
+        <div class="cert-scroll-area" id="cert-scroll-area">
+          <div class="cert-grid" id="cert-grid">
+            <!-- Card 1 -->
+            <div class="cert-grid-item" style="--delay: 0.00s">
+              <div class="cert-card" data-category="hackathons" data-title="Agentic AI Hackathon"
+                data-issuer="Google / Tech Community" data-year="2025"
+                data-description="Built and deployed autonomous AI agents to solve real-world automation challenges.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate1.jpg"
+                    onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Agentic AI Hackathon">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Agentic AI Hackathon</h3>
+                  <span class="cert-card-category">Hackathons</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card Webathon -->
+            <div class="cert-grid-item" style="--delay: 0.02s">
+              <div class="cert-card" data-category="hackathons" data-title="Webathon" data-issuer="Webathon"
+                data-year="2025" data-description="Participated and built solutions in a web development hackathon.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate2.jpeg"
+                    onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Webathon">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Webathon</h3>
+                  <span class="cert-card-category">Hackathons</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card Tech-Z Web Development -->
+            <div class="cert-grid-item" style="--delay: 0.05s">
+              <div class="cert-card" data-category="programs" data-title="Tech-Z Web Development" data-issuer="Tech-Z"
+                data-year="2025"
+                data-description="Completed an in-depth professional web development certification course.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate3.jpeg"
+                    onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Tech-Z Web Development">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Tech-Z Web Development</h3>
+                  <span class="cert-card-category">Programs</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="cert-grid-item" style="--delay: 0.10s">
+              <div class="cert-card" data-category="events" data-title="IV Spectra" data-issuer="College of Engineering"
+                data-year="2025"
+                data-description="Showcased engineering projects and engaged in technical workshops at IV Spectra.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate4.jpeg"
+                    onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="IV Spectra">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">IV Spectra</h3>
+                  <span class="cert-card-category">Events</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="cert-grid-item" style="--delay: 0.20s">
+              <div class="cert-card" data-category="programs" data-title="IEDC Cluster" data-issuer="IEDC"
+                data-year="2025"
+                data-description="Trained in startup frameworks, innovation principles, and business modeling.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate6.jpeg"
+                    onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="IEDC Cluster">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">IEDC Cluster</h3>
+                  <span class="cert-card-category">Programs</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="cert-grid-item" style="--delay: 0.25s">
+              <div class="cert-card" data-category="hackathons" data-title="Gravitas — VIT"
+                data-issuer="Vellore Institute of Technology" data-year="2025"
+                data-description="Participated in international technical symposium events and lectures.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate7.jpg"
+                    onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Gravitas — VIT">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Gravitas — VIT</h3>
+                  <span class="cert-card-category">Hackathons</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="cert-grid-item" style="--delay: 0.30s">
+              <div class="cert-card" data-category="events" data-title="Quake Clash" data-issuer="CSEA" data-year="2025"
+                data-description="Designed algorithms and solved complex data challenges in a time-bound contest.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate5.jpeg"
+                    onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Quake Clash">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Quake Clash</h3>
+                  <span class="cert-card-category">Events</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card CodeBrew -->
+            <div class="cert-grid-item" style="--delay: 0.32s">
+              <div class="cert-card" data-category="hackathons" data-title="CodeBrew" data-issuer="IEDC"
+                data-year="2025"
+                data-description="Competed in CodeBrew hackathon, building prototype solutions under tight time constraints.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate8.jpeg"
+                    onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="CodeBrew">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">CodeBrew</h3>
+                  <span class="cert-card-category">Hackathons</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="cert-grid-item" style="--delay: 0.35s">
+              <div class="cert-card" data-category="events" data-title="Kineart" data-issuer="Kineart Studio"
+                data-year="2025"
+                data-description="Explored the intersection of art, digital interfaces, and modern frontend technologies.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate9.jpeg"
+                    onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Kineart">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Kineart</h3>
+                  <span class="cert-card-category">Events</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 9 -->
+            <div class="cert-grid-item" style="--delay: 0.40s">
+              <div class="cert-card" data-category="bootcamps" data-title="Game Development Club Bootcamp"
+                data-issuer="GD Club" data-year="2025"
+                data-description="Mastered game loops, physics engines, and graphics programming during a bootcamp.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate10.jpg"
+                    onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Game Development Club Bootcamp">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Game Development Club Bootcamp</h3>
+                  <span class="cert-card-category">Bootcamps</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 10 -->
+            <div class="cert-grid-item" style="--delay: 0.45s">
+              <div class="cert-card" data-category="bootcamps" data-title="Evolve" data-issuer="Evolve Training"
+                data-year="2025"
+                data-description="A boot camp focusing on professional development and career acceleration.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate11.jpg"
+                    onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Evolve">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Evolve</h3>
+                  <span class="cert-card-category">Bootcamps</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 11 -->
+            <div class="cert-grid-item" style="--delay: 0.50s">
+              <div class="cert-card" data-category="hackathons" data-title="Built with AI"
+                data-issuer="Microsoft / Developer Club" data-year="2025"
+                data-description="Developed end-to-end full stack products leveraging Large Language Models.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate12.jpeg"
+                    onerror="if(this.src.indexOf('.jpeg')!==-1){ this.src=this.src.replace('.jpeg', '.jpg'); } else if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Built with AI">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Built with AI</h3>
+                  <span class="cert-card-category">Hackathons</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 12 -->
+            <div class="cert-grid-item" style="--delay: 0.55s">
+              <div class="cert-card" data-category="bootcamps" data-title="Jumpstart" data-issuer="Jumpstart Org"
+                data-year="2025"
+                data-description="Completed intensive technical onboarding program for modern web tech stack.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate13.png"
+                    onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Jumpstart">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Jumpstart</h3>
+                  <span class="cert-card-category">Bootcamps</span>
+                </div>
+              </div>
+            </div>
+            <!-- Card 13 -->
+            <div class="cert-grid-item" style="--delay: 0.60s">
+              <div class="cert-card" data-category="programs" data-title="Unleash Your Voice"
+                data-issuer="Tech-Z / Toastmasters" data-year="2025"
+                data-description="Mastered speaking, public presentations, and pitch deck creation.">
+                <div class="cert-thumb">
+                  <img loading="lazy" src="certificates/certificate15.jpg"
+                    onerror="if(this.src.indexOf('.jpg')!==-1){ this.src=this.src.replace('.jpg', '.png'); } else if(this.src.indexOf('.png')!==-1){ this.src=this.src.replace('.png', '.webp'); } else { this.style.display='none'; this.nextElementSibling.style.display='flex'; }"
+                    alt="Unleash Your Voice">
+                  <div class="cert-placeholder" style="display: none;">
+                    <span class="cert-icon">📜</span>
+                  </div>
+                </div>
+                <div class="cert-info-block">
+                  <h3 class="cert-card-title">Unleash Your Voice</h3>
+                  <span class="cert-card-category">Programs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cert-scroll-hint" id="cert-scroll-hint">
+          <span>scroll to explore &darr;</span>
+        </div>
+      </main>
+    </div>
+  </section>
+

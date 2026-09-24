@@ -146,10 +146,10 @@
         desc: 'Built using React, Vite, Firebase, Node.js, and Gemini 1.5 Flash. It integrates AI-based incident triage, automated report generation, and Firebase real-time services for instant alerts and synchronization across campus authorities.',
         image: 'image-project/resq.jpeg',
         gallery: [
-          'image-project/resq/resq.jpeg',
+          'image-project/resq.jpeg',
           'image-project/resq/Screenshot_26-4-2026_03910_localhost.jpeg',
           'image-project/resq/Screenshot_26-4-2026_04133_localhost.jpeg'
-        ], // Add additional image paths here like 'image-project/resq-1.jpg'
+        ],
         fallback: 'R',
         tags: ['React', 'Firebase', 'Node.js', 'Gemini 1.5 flash'],
         live: 'https://resq-edd87.web.app/',
@@ -161,13 +161,11 @@
         desc: 'A powerful voice-controlled assistant built under a one-hour time constraint. Features voice-controlled emails, clipboard summaries, and to-do management using the fast Groq API.',
         image: 'image-project/voice-ivory.jpeg',
         gallery: [
-          'image-project/Voice-Ivory/email.png',
-          'image-project/Voice-Ivory/Screenshot_11-6-2026_02042_localhost.jpeg',
-          'image-project/Voice-Ivory/Screenshot_11-6-2026_02115_localhost.jpeg',
-          'image-project/Voice-Ivory/Screenshot_11-6-2026_02153_localhost.jpeg',
-          'image-project/Voice-Ivory/Screenshot_11-6-2026_02220_localhost.jpeg',
-          'image-project/Voice-Ivory/summarizer.png',
-          'image-project/Voice-Ivory/todo.png'
+          'image-project/voice-ivory.jpeg',
+          'image-project/voiceIvory/Screenshot_11-6-2026_02042_localhost.jpeg',
+          'image-project/voiceIvory/Screenshot_11-6-2026_02115_localhost.jpeg',
+          'image-project/voiceIvory/Screenshot_11-6-2026_02153_localhost.jpeg',
+          'image-project/voiceIvory/Screenshot_11-6-2026_02220_localhost.jpeg'
         ],
         fallback: 'V',
         tags: ['React', 'FastAPI', 'Groq API', 'Gmail SMTP'],
@@ -180,6 +178,7 @@
         desc: 'Students can fill in their comprehensive profile and get intelligently matched with relevant scholarship opportunities, streamlining the financial aid discovery process.',
         image: 'image-project/pylon.jpeg',
         gallery: [
+          'image-project/pylon.jpeg',
           'image-project/pylon/Screenshot_11-6-2026_02534_pylon-scholarship-hub.vercel.app.jpeg',
           'image-project/pylon/Screenshot_11-6-2026_0264_pylon-scholarship-hub.vercel.app.jpeg',
           'image-project/pylon/Screenshot_11-6-2026_0272_pylon-scholarship-hub.vercel.app.jpeg'
@@ -195,6 +194,7 @@
         desc: 'Built an interactive learning platform that turns skill development into a game-like experience. It uses a growth-based progress system to keep learners continually motivated and engaged through hands-on practical challenges.',
         image: 'image-project/code-burry.jpeg',
         gallery: [
+          'image-project/code-burry.jpeg',
           'image-project/code burry/Screenshot_11-6-2026_03040_code-burry-six.vercel.app.jpeg',
           'image-project/code burry/Screenshot_11-6-2026_0309_code-burry-six.vercel.app.jpeg'
         ],
@@ -209,9 +209,9 @@
         desc: 'Designed an intelligent system that meticulously monitors behavioral patterns to predict and prevent system failures before they happen. Focused on anomaly detection and real-time preventive alerts to ensure industrial reliability.',
         image: 'image-project/Silent-quard.png',
         gallery: [
-          'image-project/silent-guard/Screenshot_11-6-2026_04342_private-user-images.githubusercontent.com.jpeg',
-          'image-project/silent-guard/Screenshot_11-6-2026_04415_private-user-images.githubusercontent.com.jpeg',
-          'image-project/silent-guard/Silent-quard.png'
+          'image-project/Silent-quard.png',
+          'image-project/silentGuard/Screenshot_11-6-2026_04342_private-user-images.githubusercontent.com.jpeg',
+          'image-project/silentGuard/Screenshot_11-6-2026_04415_private-user-images.githubusercontent.com.jpeg'
         ],
         fallback: 'S',
         tags: ['Python', 'Streamlite', 'Numpy'],
@@ -220,9 +220,21 @@
       }
     };
 
-    // Load Data
+    // Load Data: Support URL param, URL hash, and sessionStorage
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+    let id = (params.get('id') || '').toLowerCase().trim();
+    if (!id && window.location.hash) {
+      id = window.location.hash.replace('#', '').toLowerCase().trim();
+    }
+    if (!id) {
+      try {
+        id = (sessionStorage.getItem('current_project') || '').toLowerCase().trim();
+      } catch (e) {}
+    }
+    // Fallback default so visitors never see an empty error screen
+    if (!id || !projects[id]) {
+      id = 'resq';
+    }
     const project = projects[id];
 
     if (project) {
@@ -267,33 +279,7 @@
       }
 
       // Handle Gallery Images
-      let galleryList = project.gallery || [];
-      if (id === 'voice') {
-        const knownImages = [
-          'image-project/Voice-Ivory/email.png',
-          'image-project/Voice-Ivory/summarizer.png',
-          'image-project/Voice-Ivory/todo.png',
-          'image-project/Voice-Ivory/Screenshot_11-6-2026_02042_localhost.jpeg',
-          'image-project/Voice-Ivory/Screenshot_11-6-2026_02115_localhost.jpeg',
-          'image-project/Voice-Ivory/Screenshot_11-6-2026_02153_localhost.jpeg',
-          'image-project/Voice-Ivory/Screenshot_11-6-2026_02220_localhost.jpeg'
-        ];
-        const commonNames = ['image', 'screenshot', 'screen', 'img', 'pic', 'email', 'todo', 'summarizer'];
-        const extensions = ['.png', '.jpg', '.jpeg', '.webp'];
-        const probedImages = [];
-        
-        for (let i = 1; i <= 8; i++) {
-          commonNames.forEach(name => {
-            extensions.forEach(ext => {
-              probedImages.push(`image-project/Voice-Ivory/${name}${i}${ext}`);
-              probedImages.push(`image-project/Voice-Ivory/${name}_${i}${ext}`);
-              probedImages.push(`image-project/voice-ivory/${name}${i}${ext}`);
-              probedImages.push(`image-project/voice-ivory/${name}_${i}${ext}`);
-            });
-          });
-        }
-        galleryList = Array.from(new Set([...knownImages, ...probedImages]));
-      }
+      const galleryList = project.gallery || [];
 
       if (galleryList && galleryList.length > 0) {
         const galleryWrap = document.getElementById('pd-gallery');
