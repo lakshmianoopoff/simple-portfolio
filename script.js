@@ -422,6 +422,9 @@ if (card && wrapper) {
 let skillsTimeouts = [];
 
 function clearSkillsAnimation() {
+  // On mobile devices, never clear visibility classes to avoid UI disappearance
+  if (window.innerWidth <= 768) return;
+
   // Clear any active timeouts
   skillsTimeouts.forEach(t => clearTimeout(t));
   skillsTimeouts = [];
@@ -438,6 +441,7 @@ function clearSkillsAnimation() {
 }
 
 function drawLine(idxA, idxB, instant = false) {
+  if (window.innerWidth <= 768) return;
   const container = document.querySelector('.skills-svg-container');
   if (!container) return;
 
@@ -505,9 +509,15 @@ function drawLine(idxA, idxB, instant = false) {
 }
 
 function runSkillsAnimation() {
-  clearSkillsAnimation();
-
   const cards = document.querySelectorAll('.skill-card');
+  if (window.innerWidth <= 768) {
+    cards.forEach(card => {
+      card.classList.add('card-visible', 'content-visible');
+    });
+    return;
+  }
+
+  clearSkillsAnimation();
   if (cards.length < 6) return;
 
   const animateCardSequence = (cardIndex, startTime) => {
@@ -604,6 +614,11 @@ function initSkillsConnectors() {
 
 // Initialize organic skills connectors immediately
 initSkillsConnectors();
+if (window.innerWidth <= 768) {
+  document.querySelectorAll('.skill-card').forEach(c => {
+    c.classList.add('card-visible', 'content-visible');
+  });
+}
 
 
 // ==========================================
